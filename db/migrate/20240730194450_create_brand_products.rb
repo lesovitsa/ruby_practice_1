@@ -8,8 +8,8 @@ class CreateBrandProducts < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_foreign_key :brand_product_ownership, :brands, column: :brand_id, primary_key: :brand_id
-    add_foreign_key :brand_product_ownership, :products, column: :product_id, primary_key: :product_id
+    add_foreign_key :brand_products, :brands, column: :brand_id, primary_key: :brand_id
+    add_foreign_key :brand_products, :products, column: :product_id, primary_key: :product_id
     add_index :brand_products, :connection_id, using: 'hash'
   end
 end

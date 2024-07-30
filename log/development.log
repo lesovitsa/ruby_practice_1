@@ -312,3 +312,102 @@ FOREIGN KEY ("client_id")
   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (90.4ms)[0m  [1m[35mCREATE DATABASE "wogi_app_development" ENCODING = 'unicode'[0m
+  [1m[35m (28.4ms)[0m  [1m[35mCREATE DATABASE "wogi_app_test" ENCODING = 'unicode'[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-07-30 19:40:31.554664', '2024-07-30 19:40:31.554665') RETURNING "key"[0m
+Migrating to CreateUsers (20240730191743)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "users" ("name" character varying NOT NULL, "email" character varying NOT NULL, "user_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE INDEX "index_users_on_user_id" ON "users" USING hash ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_email" ON "users" USING hash ("email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730191743') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProducts (20240730192347)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "products" ("name" character varying NOT NULL, "state" character varying NOT NULL, "description" character varying NOT NULL, "product_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_products_on_product_id" ON "products" USING hash ("product_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730192347') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrandProducts (20240730192719)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "brand_products" ("brand_id" uuid NOT NULL, "product_id" uuid NOT NULL, "connection_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "brand_product_ownership" ADD CONSTRAINT "fk_rails_6c2a8ba87a"
+FOREIGN KEY ("brand_id")
+  REFERENCES "brands" ("brand_id")
+[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateBrandProducts (20240730192719)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "brand_products" ("brand_id" uuid NOT NULL, "product_id" uuid NOT NULL, "connection_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "brand_products" ADD CONSTRAINT "fk_rails_95a9b063f5"
+FOREIGN KEY ("brand_id")
+  REFERENCES "brands" ("brand_id")
+[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[35m (84.8ms)[0m  [1m[35mCREATE DATABASE "wogi_app_development" ENCODING = 'unicode'[0m
+  [1m[35m (36.1ms)[0m  [1m[35mCREATE DATABASE "wogi_app_test" ENCODING = 'unicode'[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-07-30 19:46:08.819478', '2024-07-30 19:46:08.819479') RETURNING "key"[0m
+Migrating to CreateUsers (20240730191743)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "users" ("name" character varying NOT NULL, "email" character varying NOT NULL, "user_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_user_id" ON "users" USING hash ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_users_on_email" ON "users" USING hash ("email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730191743') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProducts (20240730192347)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "products" ("name" character varying NOT NULL, "state" character varying NOT NULL, "description" character varying NOT NULL, "product_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_products_on_product_id" ON "products" USING hash ("product_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730192347') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrands (20240730192942)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "brands" ("name" character varying NOT NULL, "state" character varying NOT NULL, "brand_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_brands_on_brand_id" ON "brands" USING hash ("brand_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730192942') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrandProducts (20240730194450)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "brand_products" ("brand_id" uuid NOT NULL, "product_id" uuid NOT NULL, "connection_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "brand_products" ADD CONSTRAINT "fk_rails_95a9b063f5"
+FOREIGN KEY ("brand_id")
+  REFERENCES "brands" ("brand_id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "brand_products" ADD CONSTRAINT "fk_rails_70540a0080"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("product_id")
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_brand_products_on_connection_id" ON "brand_products" USING hash ("connection_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730194450') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateClientProducts (20240730194458)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "client_products" ("client_id" uuid NOT NULL, "brand_product_id" uuid NOT NULL, "state" character varying NOT NULL, "payout_rate" float NOT NULL, "ownership_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "client_products" ADD CONSTRAINT "fk_rails_a1ac32cba3"
+FOREIGN KEY ("brand_product_id")
+  REFERENCES "brand_products" ("connection_id")
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "client_products" ADD CONSTRAINT "fk_rails_167dcb595a"
+FOREIGN KEY ("client_id")
+  REFERENCES "users" ("user_id")
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_client_products_on_ownership_id" ON "client_products" USING hash ("ownership_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730194458') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
