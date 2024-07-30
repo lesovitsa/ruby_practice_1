@@ -3,6 +3,7 @@ class ProductInfo < ActiveRecord::Migration[7.2]
     create_table :product_info, id: false do |t|
       t.string :name, null: false
       t.string :state, null: false
+      t.string :description, null: false
       t.uuid :product_id, null: false, primary_key: true
     end
 
