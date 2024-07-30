@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      get "client_product/index"
+      get "client_product/show"
+      get "brand_product/index"
+      get "brand_product/show"
+      get "brand_aproduct/index"
+      get "brand_aproduct/show"
+      get "product/index"
+      get "product/show"
+      get "brand/index"
+      get "brand/show"
+      get "user/index"
+      get "user/show"
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
