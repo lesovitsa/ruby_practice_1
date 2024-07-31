@@ -27,4 +27,8 @@ Rails.application.routes.draw do
 
   # products
   post "/products/register", to: "products#register"
+
+  # brand_ownerships
+  post "/brands/add_product", to: "brand_ownerships#add_product_to_brand"
+  delete "/brands/remove_product", to: "brand_ownerships#remove_product_from_brand"
 end
