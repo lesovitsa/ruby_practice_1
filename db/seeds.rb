@@ -8,4 +8,4 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-admin = Auth.create(email: "admin@email.com", password: "dankpods123", role: "admin")
+admin = Auth.create(email: "admin@email.com", password: "dankpods123", role: "admin", name: "Admin Adminson")
