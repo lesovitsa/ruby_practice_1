@@ -24,4 +24,7 @@ Rails.application.routes.draw do
 
   # brands
   post "/brands/register", to: "brands#register"
+
+  # products
+  post "/products/register", to: "products#register"
 end

@@ -1536,3 +1536,46 @@ Processing by BrandsController#register as */*
 Completed 200 OK in 10ms (Views: 0.4ms | ActiveRecord: 2.7ms (3 queries, 1 cached) | GC: 0.0ms)
 
 
+Started POST "/products/register" for ::1 at 2024-07-31 23:50:39 +0300
+Processing by ProductsController#register as */*
+  Parameters: {"name"=>"Aziraphale1", "product"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"registered"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+[31mUnpermitted parameter: :product. Context: { controller: ProductsController, action: register, request: #<ActionDispatch::Request:0x00000001217988e0>, params: {"name"=>"Aziraphale1", "product"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"registered", "controller"=>"products", "action"=>"register"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:5:in `register'
+  [1m[36mProduct Create (2.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "state", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "product_id"[0m  [["name", "Aziraphale1"], ["description", nil], ["state", "registered"], ["created_at", "2024-07-31 20:50:39.126889"], ["updated_at", "2024-07-31 20:50:39.126889"]]
+  ↳ app/controllers/products_controller.rb:5:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/products_controller.rb:5:in `register'
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 14.2ms (3 queries, 1 cached) | GC: 6.9ms)
+
+
+  
+ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "product_id" of relation "products" violates not-null constraint
+DETAIL:  Failing row contains (Aziraphale1, null, registered, null, 2024-07-31 20:50:39.126889, 2024-07-31 20:50:39.126889).
+):
+
+Causes:
+PG::NotNullViolation (ERROR:  null value in column "product_id" of relation "products" violates not-null constraint
+DETAIL:  Failing row contains (Aziraphale1, null, registered, null, 2024-07-31 20:50:39.126889, 2024-07-31 20:50:39.126889).
+)
+  
+Started POST "/products/register" for ::1 at 2024-07-31 23:50:51 +0300
+Processing by ProductsController#register as */*
+  Parameters: {"name"=>"Aziraphale1", "product_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"registered"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:5:in `register'
+  [1m[36mProduct Create (2.8ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "state", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "product_id"[0m  [["name", "Aziraphale1"], ["description", nil], ["state", "registered"], ["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["created_at", "2024-07-31 20:50:51.511787"], ["updated_at", "2024-07-31 20:50:51.511787"]]
+  ↳ app/controllers/products_controller.rb:5:in `register'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:5:in `register'
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 3.8ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
