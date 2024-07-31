@@ -1,0 +1,2 @@
+class BrandOwnership < ApplicationRecord
+end

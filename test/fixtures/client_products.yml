@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  state: MyString
+  prod_id: 
+  payout_rate: 1.5
+  client_id: 
+  conn_id: 
+
+two:
+  state: MyString
+  prod_id: 
+  payout_rate: 1.5
+  client_id: 
+  conn_id: 
