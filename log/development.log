@@ -1073,3 +1073,294 @@ Processing by AuthsController#login as */*
 Completed 200 OK in 275ms (Views: 0.4ms | ActiveRecord: 11.8ms (1 query, 0 cached) | GC: 7.2ms)
 
 
+Started POST "/login" for ::1 at 2024-07-31 22:53:52 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 1 pending migration:
+
+db/migrate/20240731194406_add_userid_to_auths.rb
+
+
+):
+  
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:756:in `check_pending_migrations'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:663:in `block (2 levels) in call'
+activesupport (7.2.0.beta3) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:668:in `block in call'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:660:in `synchronize'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:660:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.1) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.7) lib/rack/method_override.rb:28:in `call'
+rack (3.1.7) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.0.beta3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.7) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in `call'
+railties (7.2.0.beta3) lib/rails/engine.rb:535:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddUseridToAuths (20240731194406)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.1ms)[0m  [1m[35mALTER TABLE "auths" ADD "userid" uuid[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731194406') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/login" for ::1 at 2024-07-31 22:54:22 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:24:in `login'
+Completed 200 OK in 267ms (Views: 0.5ms | ActiveRecord: 13.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-07-31 22:54:51 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client", "name"=>"Crowley"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:37:in `add_user'
+  [1m[36mAuth Create (3.0ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-07-31 19:54:51.591294"], ["updated_at", "2024-07-31 19:54:51.591294"], ["name", "Crowley"], ["userid", nil]]
+  ↳ app/controllers/auths_controller.rb:37:in `add_user'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:37:in `add_user'
+Completed 200 OK in 270ms (Views: 0.1ms | ActiveRecord: 3.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-07-31 22:56:32 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client", "name"=>"Aziraphale"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-07-31 22:58:26 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client", "name"=>"Aziraphale"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-07-31 22:58:51 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client", "name"=>"Aziraphale", "userid"=>"51fcded1-c8dc-46c5-bbb5-90a50df0a569"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mAuth Create (1.9ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-07-31 19:58:52.069538"], ["updated_at", "2024-07-31 19:58:52.069538"], ["name", "Aziraphale"], ["userid", "51fcded1-c8dc-46c5-bbb5-90a50df0a569"]]
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+Completed 200 OK in 308ms (Views: 0.2ms | ActiveRecord: 19.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2024-07-31 22:59:07 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:16:in `login'
+Completed 200 OK in 274ms (Views: 0.4ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register_admin" for ::1 at 2024-07-31 23:00:12 +0300
+Processing by AuthsController#add_admin as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client", "name"=>"Aziraphale", "userid"=>"7bac3a09-79d0-4a58-933a-9597f3475da3"}
+  [1m[36mAuth Load (4.5ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 26ms (Views: 0.6ms | ActiveRecord: 4.5ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/register_admin" for ::1 at 2024-07-31 23:00:18 +0300
+Processing by AuthsController#add_admin as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"admin", "name"=>"Aziraphale", "userid"=>"7bac3a09-79d0-4a58-933a-9597f3475da3"}
+  [1m[36mAuth Load (1.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mAuth Create (19.7ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-07-31 20:00:19.132734"], ["updated_at", "2024-07-31 20:00:19.132734"], ["name", "Aziraphale"], ["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"]]
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+Completed 200 OK in 302ms (Views: 0.4ms | ActiveRecord: 22.9ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddIndexToAuth (20240731200119)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_auths_on_userid" ON "auths" ("userid")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_auths_on_email" ON "auths" ("email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731200119') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/register_admin" for ::1 at 2024-07-31 23:02:48 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#add_admin as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"admin", "name"=>"Aziraphale", "userid"=>"7bac3a09-79d0-4a58-933a-9597f3475da3"}
+  [1m[36mAuth Load (1.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mAuth Create (3.2ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-07-31 20:02:49.177404"], ["updated_at", "2024-07-31 20:02:49.177404"], ["name", "Aziraphale"], ["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"]]
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+Completed 500 Internal Server Error in 270ms (ActiveRecord: 16.8ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_auths_on_userid"
+DETAIL:  Key (userid)=(7bac3a09-79d0-4a58-933a-9597f3475da3) already exists.
+):
+
+Causes:
+PG::UniqueViolation (ERROR:  duplicate key value violates unique constraint "index_auths_on_userid"
+DETAIL:  Key (userid)=(7bac3a09-79d0-4a58-933a-9597f3475da3) already exists.
+)
+  
+Started POST "/register_admin" for ::1 at 2024-07-31 23:03:00 +0300
+Processing by AuthsController#add_admin as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"admin", "name"=>"Aziraphale", "userid"=>"7bac3a09-79d0-4a58-933a-9597f3475da2"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mAuth Create (2.3ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-07-31 20:03:01.274438"], ["updated_at", "2024-07-31 20:03:01.274438"], ["name", "Aziraphale"], ["userid", "7bac3a09-79d0-4a58-933a-9597f3475da2"]]
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+Completed 500 Internal Server Error in 276ms (ActiveRecord: 2.9ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_auths_on_email"
+DETAIL:  Key (email)=(admin1@email.com) already exists.
+):
+
+Causes:
+PG::UniqueViolation (ERROR:  duplicate key value violates unique constraint "index_auths_on_email"
+DETAIL:  Key (email)=(admin1@email.com) already exists.
+)
+  
+Started POST "/register_admin" for ::1 at 2024-07-31 23:03:10 +0300
+Processing by AuthsController#add_admin as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"admin", "name"=>"Aziraphale", "userid"=>"7bac3a09-79d0-4a58-933a-9597f3475da1"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mAuth Create (1.8ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-07-31 20:03:10.489778"], ["updated_at", "2024-07-31 20:03:10.489778"], ["name", "Aziraphale"], ["userid", "7bac3a09-79d0-4a58-933a-9597f3475da1"]]
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+Completed 200 OK in 272ms (Views: 0.3ms | ActiveRecord: 3.2ms (3 queries, 1 cached) | GC: 0.1ms)
+
+
+Started POST "/register_admin" for ::1 at 2024-07-31 23:04:27 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#add_admin as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"admin", "name"=>"Aziraphale"}
+  [1m[36mAuth Load (0.7ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mAuth Create (2.2ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-07-31 20:04:27.939857"], ["updated_at", "2024-07-31 20:04:27.939857"], ["name", "Aziraphale"], ["userid", nil]]
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:32:in `add_user'
+Completed 200 OK in 268ms (Views: 0.2ms | ActiveRecord: 16.9ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (107.4ms)[0m  [1m[35mCREATE DATABASE "wogi_app_development" ENCODING = 'unicode'[0m
+  [1m[35m (41.6ms)[0m  [1m[35mCREATE DATABASE "wogi_app_test" ENCODING = 'unicode'[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-07-31 20:06:24.475964', '2024-07-31 20:06:24.475966') RETURNING "key"[0m
+Migrating to CreateAuths (20240731122427)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "auths" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "role" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731122427') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddNameToAuths (20240731194123)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "auths" ADD "name" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731194123') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUseridToAuths (20240731194406)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "auths" ADD "userid" uuid[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731194406') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddIndexToAuth (20240731200119)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_auths_on_userid" ON "auths" ("userid")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_auths_on_email" ON "auths" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "auths" ALTER COLUMN "userid" SET NOT NULL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "auths" ALTER COLUMN "email" SET NOT NULL[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731200119') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuth Create (2.5ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-07-31 20:06:26.899303"], ["updated_at", "2024-07-31 20:06:26.899303"], ["name", "Admin Adminson"], ["userid", nil]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuth Create (3.8ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-07-31 20:06:52.059537"], ["updated_at", "2024-07-31 20:06:52.059537"], ["name", "Admin Adminson"], ["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m

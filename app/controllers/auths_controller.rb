@@ -4,33 +4,11 @@ class AuthsController < ApplicationController
     
     # REGISTER
     def add_admin
-        if auth_params[:role] != "admin"
-            render json: {error: "Invalid argument"}
-            return
-        end
-
-        @user = Auth.create(auth_params)
-        if @user.valid?
-            token = encode_token({user_id: @user.id})
-            render json: {user: @user, token: token}
-        else
-            render json: {error: "Invalid email or password"}
-        end
+        add_user("admin")
     end
 
     def create_client
-        if auth_params[:role] != "client"
-            render json: {error: "Invalid argument"}
-            return
-        end
-
-        @user = Auth.create(auth_params)
-        if @user.valid?
-            token = encode_token({user_id: @user.id})
-            render json: {user: @user, token: token}
-        else
-            render json: {error: "Invalid email or password"}
-        end
+        add_user("client")
     end
     
     # LOGGING IN
@@ -38,17 +16,31 @@ class AuthsController < ApplicationController
         @user = Auth.find_by(email: params[:email])
     
         if @user && @user.authenticate(params[:password])
-        token = encode_token({user_id: @user.id})
-        render json: {user: @user, token: token}
+            token = encode_token({user_id: @user.id})
+            render json: {user: @user, token: token}
         else
-        render json: {error: "Invalid email or password"}
+            render json: {error: "Invalid email or password"}
         end
     end
     
     private
+
+    def add_user(role)
+        if auth_params[:role] != role
+            render json: {error: "Invalid argument"}
+        else
+            @user = Auth.create(auth_params)
+            if @user.valid?
+                token = encode_token({user_id: @user.id})
+                render json: {user: @user, token: token}
+            else
+                render json: {error: "Invalid email or password"}
+            end
+        end
+    end
     
     def auth_params
-        params.permit(:email, :password, :role)
+        params.permit(:email, :password, :role, :name, :userid)
     end
     
 end
