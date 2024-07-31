@@ -1,5 +1,5 @@
 class BrandsController < ApplicationController
-    before_action :authorized_admin, only: [:register]
+    before_action :authorized_admin, only: [:register, :update_brand]
 
     def register
         @brand = Brand.create(brand_params)
@@ -8,6 +8,13 @@ class BrandsController < ApplicationController
         else
             render json: {error: "Error registering brand"}
         end
+    end
+
+    def update_brand
+        @brand = Brand.find(brand_params[:brand_id])
+        @brand.update(brand_params)
+        @brand.reload
+        render json: {brand: @brand}
     end
 
     private

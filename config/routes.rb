@@ -24,9 +24,11 @@ Rails.application.routes.draw do
 
   # brands
   post "/brands/register", to: "brands#register"
+  patch "/brands/update", to: "brands#update_brand"
 
   # products
   post "/products/register", to: "products#register"
+  patch "/products/update", to: "products#update_product"
 
   # brand_ownerships
   post "/brands/add_product", to: "brand_ownerships#add_product_to_brand"

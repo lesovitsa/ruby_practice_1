@@ -1703,3 +1703,135 @@ Completed 404 Not Found in 4ms (ActiveRecord: 0.5ms (3 queries, 1 cached) | GC: 
 ActiveRecord::RecordNotFound (Couldn't find BrandOwnership with 'conn_id'=55a5978a-edb8-44b5-8081-60e1cf544fb3):
   
 app/controllers/brand_ownerships_controller.rb:14:in `remove_product_from_brand'
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT "products".* FROM "products" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+Started PATCH "/products/update" for ::1 at 2024-08-01 00:09:51 +0300
+  
+ActionController::RoutingError (uninitialized constant ProductController):
+
+Causes:
+ActionDispatch::MissingController (uninitialized constant ProductController)
+NameError (uninitialized constant ProductController)
+  
+Started PATCH "/products/update" for ::1 at 2024-08-01 00:10:03 +0300
+  
+NameError (undefined local variable or method `update_product' for class ProductsController):
+  
+app/controllers/products_controller.rb:2:in `<class:ProductsController>'
+app/controllers/products_controller.rb:1:in `<main>'
+Started PATCH "/products/update" for ::1 at 2024-08-01 00:10:20 +0300
+  
+AbstractController::ActionNotFound (The action 'update_products' could not be found for ProductsController):
+  
+actionpack (7.2.0.beta3) lib/abstract_controller/base.rb:158:in `process'
+actionview (7.2.0.beta3) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.0.beta3) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.7) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.7) lib/rack/etag.rb:29:in `call'
+rack (3.1.7) lib/rack/conditional_get.rb:43:in `call'
+rack (3.1.7) lib/rack/head.rb:15:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.1) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.7) lib/rack/method_override.rb:28:in `call'
+rack (3.1.7) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.0.beta3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.7) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in `call'
+railties (7.2.0.beta3) lib/rails/engine.rb:535:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started PATCH "/products/update" for ::1 at 2024-08-01 00:10:43 +0300
+Processing by ProductsController#update_product as */*
+  Parameters: {"product_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "name"=>"A. Z. Fell"}
+  [1m[36mAuth Load (0.7ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:14:in `update_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:15:in `update_product'
+  [1m[36mProduct Update (2.8ms)[0m  [1m[33mUPDATE "products" SET "name" = $1, "updated_at" = $2 WHERE "products"."product_id" = $3[0m  [["name", "A. Z. Fell"], ["updated_at", "2024-07-31 21:10:43.283125"], ["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"]]
+  ↳ app/controllers/products_controller.rb:15:in `update_product'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:15:in `update_product'
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:16:in `update_product'
+Completed 200 OK in 43ms (Views: 1.3ms | ActiveRecord: 18.1ms (5 queries, 1 cached) | GC: 0.0ms)
+
+
+  [1m[36mProduct Load (2.8ms)[0m  [1m[34mSELECT "products".* FROM "products" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mBrand Load (1.4ms)[0m  [1m[34mSELECT "brands".* FROM "brands" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+Started PATCH "/brands/update" for ::1 at 2024-08-01 00:12:26 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "name"=>"A. Z. Fell"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 9.3ms (2 queries, 1 cached) | GC: 0.2ms)
+
+
+  
+NameError (undefined local variable or method `product_params' for an instance of BrandsController):
+  
+app/controllers/brands_controller.rb:14:in `update_brand'
+Started PATCH "/brands/update" for ::1 at 2024-08-01 00:12:39 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "name"=>"A. Z. Fell"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (2.8ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:15:in `update_brand'
+  [1m[36mBrand Update (1.0ms)[0m  [1m[33mUPDATE "brands" SET "name" = $1, "updated_at" = $2 WHERE "brands"."brand_id" = $3[0m  [["name", "A. Z. Fell"], ["updated_at", "2024-07-31 21:12:39.216702"], ["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"]]
+  ↳ app/controllers/brands_controller.rb:15:in `update_brand'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brands_controller.rb:15:in `update_brand'
+  [1m[36mBrand Load (0.3ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:16:in `update_brand'
+Completed 200 OK in 26ms (Views: 0.2ms | ActiveRecord: 13.9ms (5 queries, 1 cached) | GC: 0.0ms)
+
+
