@@ -31,4 +31,5 @@ Rails.application.routes.draw do
   resource :users, only: [:create]
   post "/register", to: "auths#create_client"
   post "/login", to: "auths#login"
+  post "/register_admin", to: "auths#add_admin"
 end

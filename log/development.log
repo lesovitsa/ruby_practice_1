@@ -939,3 +939,52 @@ Processing by AuthsController#login as */*
 Completed 200 OK in 278ms (Views: 0.3ms | ActiveRecord: 25.8ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/login" for ::1 at 2024-07-31 20:32:52 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:38:in `login'
+Completed 200 OK in 270ms (Views: 0.7ms | ActiveRecord: 10.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2024-07-31 20:33:44 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:38:in `login'
+Completed 200 OK in 269ms (Views: 0.3ms | ActiveRecord: 12.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register_admin" for ::1 at 2024-07-31 20:34:23 +0300
+Processing by AuthsController#add_admin as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"admin"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:12:in `add_admin'
+  [1m[36mAuth Create (3.5ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-07-31 17:34:24.015499"], ["updated_at", "2024-07-31 17:34:24.015499"]]
+  ↳ app/controllers/auths_controller.rb:12:in `add_admin'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:12:in `add_admin'
+Completed 200 OK in 279ms (Views: 0.1ms | ActiveRecord: 5.3ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2024-07-31 20:34:43 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:38:in `login'
+Completed 200 OK in 270ms (Views: 0.3ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2024-07-31 20:35:04 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"admin"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:38:in `login'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
