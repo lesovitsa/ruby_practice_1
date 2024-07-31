@@ -27,4 +27,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resource :users, only: [:create]
+  post "/register", to: "auths#create_client"
+  post "/login", to: "auths#login"
 end

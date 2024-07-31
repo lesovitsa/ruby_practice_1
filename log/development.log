@@ -421,3 +421,521 @@ Migrating to AddTypeToUsers (20240730202256)
   [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (128.1ms)[0m  [1m[35mCREATE DATABASE "wogi_app_development" ENCODING = 'unicode'[0m
+  [1m[35m (44.7ms)[0m  [1m[35mCREATE DATABASE "wogi_app_test" ENCODING = 'unicode'[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-07-31 12:50:09.727468', '2024-07-31 12:50:09.727469') RETURNING "key"[0m
+Migrating to CreateUsers (20240730191743)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "users" ("name" character varying NOT NULL, "email" character varying NOT NULL, "user_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_users_on_user_id" ON "users" USING hash ("user_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_users_on_email" ON "users" USING hash ("email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730191743') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProducts (20240730192347)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "products" ("name" character varying NOT NULL, "state" character varying NOT NULL, "description" character varying NOT NULL, "product_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_products_on_product_id" ON "products" USING hash ("product_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730192347') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrands (20240730192942)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "brands" ("name" character varying NOT NULL, "state" character varying NOT NULL, "brand_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_brands_on_brand_id" ON "brands" USING hash ("brand_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730192942') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrandProducts (20240730194450)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "brand_products" ("brand_id" uuid NOT NULL, "product_id" uuid NOT NULL, "connection_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "brand_products" ADD CONSTRAINT "fk_rails_95a9b063f5"
+FOREIGN KEY ("brand_id")
+  REFERENCES "brands" ("brand_id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "brand_products" ADD CONSTRAINT "fk_rails_70540a0080"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("product_id")
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_brand_products_on_connection_id" ON "brand_products" USING hash ("connection_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730194450') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateClientProducts (20240730194458)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "client_products" ("client_id" uuid NOT NULL, "brand_product_id" uuid NOT NULL, "state" character varying NOT NULL, "payout_rate" float NOT NULL, "ownership_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "client_products" ADD CONSTRAINT "fk_rails_a1ac32cba3"
+FOREIGN KEY ("brand_product_id")
+  REFERENCES "brand_products" ("connection_id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "client_products" ADD CONSTRAINT "fk_rails_167dcb595a"
+FOREIGN KEY ("client_id")
+  REFERENCES "users" ("user_id")
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_client_products_on_ownership_id" ON "client_products" USING hash ("ownership_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730194458') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddTypeToUsers (20240730202256)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "users" ADD "type" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240730202256') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAuths (20240731122427)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "auths" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "role" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731122427') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuth Create (2.0ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-07-31 12:50:14.532755"], ["updated_at", "2024-07-31 12:50:14.532755"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/login" for ::1 at 2024-07-31 15:57:51 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant AuthsController):
+
+Causes:
+ActionDispatch::MissingController (uninitialized constant AuthsController)
+NameError (uninitialized constant AuthsController)
+  
+Started POST "/login" for ::1 at 2024-07-31 16:00:20 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+Zeitwerk::NameError (expected file /Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb to define constant AuthsController, but didn't):
+  
+zeitwerk (2.6.16) lib/zeitwerk/loader/callbacks.rb:32:in `on_file_autoloaded'
+zeitwerk (2.6.16) lib/zeitwerk/kernel.rb:27:in `require'
+activesupport (7.2.0.beta3) lib/active_support/inflector/methods.rb:290:in `const_get'
+activesupport (7.2.0.beta3) lib/active_support/inflector/methods.rb:290:in `constantize'
+activesupport (7.2.0.beta3) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/request.rb:92:in `controller_class_for'
+actionpack (7.2.0.beta3) lib/action_dispatch/request/utils.rb:102:in `action_encoding_template'
+actionpack (7.2.0.beta3) lib/action_dispatch/request/utils.rb:87:in `encode'
+actionpack (7.2.0.beta3) lib/action_dispatch/request/utils.rb:47:in `set_binary_encoding'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/parameters.rb:70:in `path_parameters='
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.7) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.7) lib/rack/etag.rb:29:in `call'
+rack (3.1.7) lib/rack/conditional_get.rb:43:in `call'
+rack (3.1.7) lib/rack/head.rb:15:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.1) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.7) lib/rack/method_override.rb:28:in `call'
+rack (3.1.7) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.0.beta3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.7) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in `call'
+railties (7.2.0.beta3) lib/rails/engine.rb:535:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started POST "/login" for ::1 at 2024-07-31 16:00:56 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 11.9ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column auths.username does not exist
+LINE 1: SELECT "auths".* FROM "auths" WHERE "auths"."username" = $1 ...
+                                            ^
+):
+
+Causes:
+PG::UndefinedColumn (ERROR:  column auths.username does not exist
+LINE 1: SELECT "auths".* FROM "auths" WHERE "auths"."username" = $1 ...
+                                            ^
+)
+  
+Started POST "/login" for ::1 at 2024-07-31 16:01:58 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (1.1ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:17:in `login'
+Completed 200 OK in 268ms (Views: 0.4ms | ActiveRecord: 14.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-07-31 16:03:12 +0300
+Processing by AuthsController#create as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (undefined local variable or method `auth_params' for an instance of AuthsController):
+  
+app/controllers/auths_controller.rb:6:in `create'
+Started POST "/register" for ::1 at 2024-07-31 16:03:36 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:6:in `create'
+  [1m[36mAuth Create (3.4ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-07-31 13:03:36.405123"], ["updated_at", "2024-07-31 13:03:36.405123"]]
+  ↳ app/controllers/auths_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:6:in `create'
+Completed 200 OK in 268ms (Views: 0.2ms | ActiveRecord: 18.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-07-31 20:16:13 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The auto_login action could not be found for the :authorized
+callback on AuthsController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (7.2.0.beta3) lib/abstract_controller/callbacks.rb:62:in `match?'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:385:in `block in make_lambda'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:178:in `call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:559:in `block in invoke_before'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:559:in `each'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:559:in `invoke_before'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:119:in `block in run_callbacks'
+turbo-rails (2.0.6) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.6) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.0.beta3) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.0.beta3) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.0.beta3) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.0.beta3) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.0.beta3) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.0.beta3) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.0.beta3) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.0.beta3) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.0.beta3) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.0.beta3) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.0.beta3) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.0.beta3) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.7) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.7) lib/rack/etag.rb:29:in `call'
+rack (3.1.7) lib/rack/conditional_get.rb:43:in `call'
+rack (3.1.7) lib/rack/head.rb:15:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.1) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.7) lib/rack/method_override.rb:28:in `call'
+rack (3.1.7) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.0.beta3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.7) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in `call'
+railties (7.2.0.beta3) lib/rails/engine.rb:535:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started POST "/register" for ::1 at 2024-07-31 20:16:43 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-07-31 20:17:26 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-07-31 20:17:36 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-07-31 20:19:47 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The create action could not be found for the :authorized
+callback on AuthsController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (7.2.0.beta3) lib/abstract_controller/callbacks.rb:62:in `match?'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:391:in `block in inverted_lambda'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:178:in `call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:559:in `block in invoke_before'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:559:in `each'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:559:in `invoke_before'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:119:in `block in run_callbacks'
+turbo-rails (2.0.6) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.6) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.0.beta3) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.0.beta3) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.0.beta3) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.0.beta3) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.0.beta3) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.0.beta3) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.0.beta3) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.0.beta3) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.0.beta3) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.0.beta3) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.0.beta3) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.0.beta3) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.7) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.7) lib/rack/etag.rb:29:in `call'
+rack (3.1.7) lib/rack/conditional_get.rb:43:in `call'
+rack (3.1.7) lib/rack/head.rb:15:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.1) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.7) lib/rack/method_override.rb:28:in `call'
+rack (3.1.7) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.0.beta3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.7) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in `call'
+railties (7.2.0.beta3) lib/rails/engine.rb:535:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started POST "/register" for ::1 at 2024-07-31 20:20:14 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `<<' for an instance of ActionController::Parameters):
+  
+app/controllers/auths_controller.rb:9:in `create_client'
+Started POST "/register" for ::1 at 2024-07-31 20:24:35 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 1)):
+  
+app/controllers/auths_controller.rb:33:in `auth_params'
+app/controllers/auths_controller.rb:9:in `create_client'
+Started POST "/register" for ::1 at 2024-07-31 20:27:03 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+[31mUnpermitted parameter: :role. Context: { controller: AuthsController, action: create_client, request: #<ActionDispatch::Request:0x0000000122216560>, params: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client", "controller"=>"auths", "action"=>"create_client"} }[0m
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil):
+  
+app/controllers/auths_controller.rb:9:in `create_client'
+Started POST "/register" for ::1 at 2024-07-31 20:27:34 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+[31mUnpermitted parameter: :role. Context: { controller: AuthsController, action: create_client, request: #<ActionDispatch::Request:0x0000000123296548>, params: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client", "controller"=>"auths", "action"=>"create_client"} }[0m
+[31mUnpermitted parameter: :role. Context: { controller: AuthsController, action: create_client, request: #<ActionDispatch::Request:0x0000000123296548>, params: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client", "controller"=>"auths", "action"=>"create_client"} }[0m
+Completed 500 Internal Server Error in 4ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `<<' for an instance of ActionController::Parameters):
+  
+app/controllers/auths_controller.rb:13:in `create_client'
+Started POST "/register" for ::1 at 2024-07-31 20:28:00 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:13:in `create_client'
+  [1m[36mAuth Create (3.8ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-07-31 17:28:00.689878"], ["updated_at", "2024-07-31 17:28:00.689878"]]
+  ↳ app/controllers/auths_controller.rb:13:in `create_client'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:13:in `create_client'
+Completed 200 OK in 277ms (Views: 0.1ms | ActiveRecord: 25.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-07-31 20:28:12 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"test"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:13:in `create_client'
+  [1m[36mAuth Create (1.5ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "test"], ["created_at", "2024-07-31 17:28:12.860270"], ["updated_at", "2024-07-31 17:28:12.860270"]]
+  ↳ app/controllers/auths_controller.rb:13:in `create_client'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:13:in `create_client'
+Completed 500 Internal Server Error in 272ms (Views: 0.1ms | ActiveRecord: 3.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...); return".):
+  
+app/controllers/auths_controller.rb:16:in `create_client'
+Started POST "/register" for ::1 at 2024-07-31 20:28:39 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"test"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2024-07-31 20:29:22 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2024-07-31 20:29:23 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2024-07-31 20:29:38 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.9ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:25:in `login'
+Completed 200 OK in 278ms (Views: 0.3ms | ActiveRecord: 25.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
