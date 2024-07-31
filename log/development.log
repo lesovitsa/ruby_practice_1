@@ -1448,3 +1448,91 @@ FOREIGN KEY ("prod_id")
   [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/login" for ::1 at 2024-07-31 23:44:19 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.7ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:16:in `login'
+Completed 200 OK in 269ms (Views: 0.3ms | ActiveRecord: 14.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/brands_register" for ::1 at 2024-07-31 23:45:24 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/brands_register"):
+  
+Started POST "/brands/register" for ::1 at 2024-07-31 23:45:34 +0300
+Processing by BrandsController#register as */*
+  Parameters: {"name"=>"Aziraphale", "brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb4", "state"=>"registered"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:5:in `register'
+  [1m[36mBrand Create (5.0ms)[0m  [1m[32mINSERT INTO "brands" ("name", "state", "brand_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "brand_id"[0m  [["name", "Aziraphale"], ["state", "registered"], ["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb4"], ["created_at", "2024-07-31 20:45:35.001603"], ["updated_at", "2024-07-31 20:45:35.001603"]]
+  ↳ app/controllers/brands_controller.rb:5:in `register'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brands_controller.rb:5:in `register'
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 9.5ms (3 queries, 1 cached) | GC: 1.3ms)
+
+
+  
+NameError (undefined local variable or method `token' for an instance of BrandsController):
+  
+app/controllers/brands_controller.rb:7:in `register'
+Started POST "/brands/register" for ::1 at 2024-07-31 23:46:00 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BrandsController#register as */*
+  Parameters: {"name"=>"Aziraphale", "brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb4", "state"=>"registered"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:5:in `register'
+  [1m[36mBrand Create (1.8ms)[0m  [1m[32mINSERT INTO "brands" ("name", "state", "brand_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "brand_id"[0m  [["name", "Aziraphale"], ["state", "registered"], ["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb4"], ["created_at", "2024-07-31 20:46:00.424507"], ["updated_at", "2024-07-31 20:46:00.424507"]]
+  ↳ app/controllers/brands_controller.rb:5:in `register'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/brands_controller.rb:5:in `register'
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 15.3ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "brands_pkey"
+DETAIL:  Key (brand_id)=(55a5978a-edb8-44b5-8081-60e1cf544fb4) already exists.
+):
+
+Causes:
+PG::UniqueViolation (ERROR:  duplicate key value violates unique constraint "brands_pkey"
+DETAIL:  Key (brand_id)=(55a5978a-edb8-44b5-8081-60e1cf544fb4) already exists.
+)
+  
+Started POST "/brands/register" for ::1 at 2024-07-31 23:46:42 +0300
+Processing by BrandsController#register as */*
+  Parameters: {"name"=>"Aziraphale1", "brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"registered"}
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/brands/register" for ::1 at 2024-07-31 23:46:49 +0300
+Processing by BrandsController#register as */*
+  Parameters: {"name"=>"Aziraphale1", "brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"registered"}
+  [1m[36mAuth Load (0.6ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:5:in `register'
+  [1m[36mBrand Create (1.3ms)[0m  [1m[32mINSERT INTO "brands" ("name", "state", "brand_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "brand_id"[0m  [["name", "Aziraphale1"], ["state", "registered"], ["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["created_at", "2024-07-31 20:46:49.578443"], ["updated_at", "2024-07-31 20:46:49.578443"]]
+  ↳ app/controllers/brands_controller.rb:5:in `register'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brands_controller.rb:5:in `register'
+Completed 200 OK in 10ms (Views: 0.4ms | ActiveRecord: 2.7ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
