@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   resource :users, only: [:create]
   post "/register", to: "auths#create_client"
   post "/login", to: "auths#login"
-  post "/register_admin", to: "auths#add_admin"
+  post "/admin/add_admin", to: "auths#add_admin"
+  post "/admin/add_client", to: "auths#add_client"
 
   # brands
   post "/brands/register", to: "brands#register"
@@ -33,4 +34,10 @@ Rails.application.routes.draw do
   # brand_ownerships
   post "/brands/add_product", to: "brand_ownerships#add_product_to_brand"
   delete "/brands/remove_product", to: "brand_ownerships#remove_product_from_brand"
+
+  # client products
+  post "/client/product/add", to: "client_products#add_product_to_client"
+  delete "/client/product/remove", to: "client_products#remove_product_from_client"
+  patch "/client/product/set_payout_rate", to: "client_products#set_payout_rate"
+  patch "/client/product/set_state", to: "client_products#set_state"
 end

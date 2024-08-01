@@ -1,8 +1,11 @@
+require 'securerandom'
+
 class BrandsController < ApplicationController
     before_action :authorized_admin, only: [:register, :update_brand]
 
     def register
-        @brand = Brand.create(brand_params)
+        struct = brand_params.merge({brand_id: SecureRandom.uuid})
+        @brand = Brand.create(struct)
         if @brand.valid?
             render json: {brand: @brand}
         else

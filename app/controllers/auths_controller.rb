@@ -1,6 +1,8 @@
+require 'securerandom'
+
 class AuthsController < ApplicationController
     skip_before_action :authorized, only: [:create_client, :login]
-    before_action :authorized_admin, only: [:add_admin]
+    before_action :authorized_admin, only: [:add_admin, :add_client]
     
     # REGISTER
     def add_admin
@@ -22,14 +24,21 @@ class AuthsController < ApplicationController
             render json: {error: "Invalid email or password"}
         end
     end
+
+    # ADD CLIENT AS ADMIN
+    def add_client
+        add_user("client", parameters)
+    end
+
     
     private
 
     def add_user(role)
-        if auth_params[:role] != role
-            render json: {error: "Invalid argument"}
+        struct = auth_params.merge({userid: SecureRandom.uuid})
+        if struct[:role] != role
+            render json: {error: struct}
         else
-            @user = Auth.create(auth_params)
+            @user = Auth.create(struct)
             if @user.valid?
                 token = encode_token({user_id: @user.id})
                 render json: {user: @user, token: token}

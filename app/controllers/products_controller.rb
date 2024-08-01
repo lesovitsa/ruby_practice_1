@@ -1,8 +1,11 @@
+require 'securerandom'
+
 class ProductsController < ApplicationController
     before_action :authorized_admin, only: [:register, :update_product]
 
     def register
-        @product = Product.create(product_params)
+        struct = product_params.merge({product_id: SecureRandom.uuid})
+        @product = Product.create(struct)
         if @product.valid?
             render json: {product: @product}
         else

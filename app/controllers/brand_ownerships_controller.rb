@@ -1,8 +1,11 @@
+require 'securerandom'
+
 class BrandOwnershipsController < ApplicationController
     before_action :authorized_admin, only: [:add_product_to_brand, :remove_product_from_brand]
 
     def add_product_to_brand
-        @brand_ownership = BrandOwnership.create(brand_ownership_params)
+        struct = brand_ownership_params.merge({conn_id: SecureRandom.uuid})
+        @brand_ownership = BrandOwnership.create(struct)
         if @brand_ownership.valid?
             render json: {brand_ownership: @brand_ownership}
         else
