@@ -27916,3 +27916,391 @@ FOREIGN KEY ("cardid")
   REFERENCES "cards" ("card_id")
 [0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateLogs (20240801194301)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "logs" ("log_id" uuid NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "action" character varying NOT NULL, "client_id" uuid, "brand_id" uuid, "product_id" uuid, "card_id" uuid, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_logs_on_log_id" ON "logs" ("log_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_logs_on_user_id" ON "logs" ("user_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_logs_on_client_id" ON "logs" ("client_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE INDEX "index_logs_on_brand_id" ON "logs" ("brand_id")[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE INDEX "index_logs_on_product_id" ON "logs" ("product_id")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_8fc980bf44"
+FOREIGN KEY ("user_id")
+  REFERENCES "auths" ("userid")
+[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_c037da1d86"
+FOREIGN KEY ("client_id")
+  REFERENCES "auths" ("userid")
+[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_9886271d67"
+FOREIGN KEY ("brand_id")
+  REFERENCES "brands" ("brand_id")
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_3a1ffa1d19"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("product_id")
+[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_2c80075c3c"
+FOREIGN KEY ("card_id")
+  REFERENCES "cards" ("card_id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240801194301') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/register" for ::1 at 2024-08-01 22:53:38 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:60: syntax error, unexpected local variable or method, expecting '}'
+                    client_id: struct[:userid] if role == ...
+                    ^~~~~~~~~
+/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:61: syntax error, unexpected '}', expecting `end' or dummy end
+                })
+                ^
+):
+  
+app/controllers/auths_controller.rb:60: syntax error, unexpected local variable or method, expecting '}'
+app/controllers/auths_controller.rb:61: syntax error, unexpected '}', expecting `end' or dummy end
+Started POST "/register" for ::1 at 2024-08-01 22:54:01 +0300
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:60: syntax error, unexpected `if' modifier, expecting '}'
+...  client_id: struct[:userid] if role == "client"
+...                             ^~
+/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:61: syntax error, unexpected '}', expecting `end' or dummy end
+                })
+                ^
+):
+  
+app/controllers/auths_controller.rb:60: syntax error, unexpected `if' modifier, expecting '}'
+app/controllers/auths_controller.rb:61: syntax error, unexpected '}', expecting `end' or dummy end
+Started POST "/register" for ::1 at 2024-08-01 22:54:22 +0300
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:60: syntax error, unexpected `if' modifier, expecting '}'
+...  client_id: struct[:userid] if role == "client",
+...                             ^~
+/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:60: syntax error, unexpected ',', expecting `end' or dummy end
+...t[:userid] if role == "client",
+...                              ^
+):
+  
+app/controllers/auths_controller.rb:60: syntax error, unexpected `if' modifier, expecting '}'
+app/controllers/auths_controller.rb:60: syntax error, unexpected ',', expecting `end' or dummy end
+Started POST "/register" for ::1 at 2024-08-01 22:54:53 +0300
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:60: syntax error, unexpected `do', expecting '}'
+...                  client_id: do if role == "client" struct[:...
+...                             ^~
+/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:78: syntax error, unexpected `end'):
+  
+app/controllers/auths_controller.rb:60: syntax error, unexpected `do', expecting '}'
+app/controllers/auths_controller.rb:78: syntax error, unexpected `end'
+Started POST "/register" for ::1 at 2024-08-01 22:55:06 +0300
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:60: syntax error, unexpected local variable or method, expecting `then' or ';' or '\n'
+..._id: if role == "client" struct[:userid] end
+...                         ^~~~~~
+/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:71: syntax error, unexpected `end', expecting '}'
+        end
+        ^~~
+/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:78: syntax error, unexpected end-of-input, expecting `end' or dummy end):
+  
+app/controllers/auths_controller.rb:60: syntax error, unexpected local variable or method, expecting `then' or ';' or '\n'
+app/controllers/auths_controller.rb:71: syntax error, unexpected `end', expecting '}'
+app/controllers/auths_controller.rb:78: syntax error, unexpected end-of-input, expecting `end' or dummy end
+Started POST "/register" for ::1 at 2024-08-01 22:56:02 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mAuth Create (5.4ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 19:56:03.230920"], ["updated_at", "2024-08-01 19:56:03.230920"], ["name", nil], ["userid", "eccda94d-1104-4f53-9982-caa18688578e"]]
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+Completed 500 Internal Server Error in 284ms (ActiveRecord: 12.8ms (1 query, 0 cached) | GC: 3.6ms)
+
+
+  
+NameError (uninitialized constant AuthsController::Logs):
+  
+app/controllers/auths_controller.rb:56:in `add_user'
+app/controllers/auths_controller.rb:13:in `create_client'
+Started POST "/register" for ::1 at 2024-08-01 22:56:25 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mAuth Create (2.5ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 19:56:25.785337"], ["updated_at", "2024-08-01 19:56:25.785337"], ["name", nil], ["userid", "2f4cc557-0902-4596-8182-07a42e2e067a"]]
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+Completed 500 Internal Server Error in 276ms (ActiveRecord: 13.2ms (1 query, 0 cached) | GC: 0.6ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_auths_on_email"
+DETAIL:  Key (email)=(crowleynotcrawley2@email.com) already exists.
+):
+
+Causes:
+PG::UniqueViolation (ERROR:  duplicate key value violates unique constraint "index_auths_on_email"
+DETAIL:  Key (email)=(crowleynotcrawley2@email.com) already exists.
+)
+  
+Started POST "/register" for ::1 at 2024-08-01 22:56:38 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mAuth Create (1.1ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 19:56:39.126041"], ["updated_at", "2024-08-01 19:56:39.126041"], ["name", nil], ["userid", "f441c3cb-9de7-4831-b84c-25e586c7608c"]]
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+Completed 500 Internal Server Error in 283ms (ActiveRecord: 3.5ms (1 query, 0 cached) | GC: 0.8ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedTable: ERROR:  relation "logs" does not exist
+LINE 10:  WHERE a.attrelid = '"logs"'::regclass
+                             ^
+):
+
+Causes:
+PG::UndefinedTable (ERROR:  relation "logs" does not exist
+LINE 10:  WHERE a.attrelid = '"logs"'::regclass
+                             ^
+)
+  
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (99.8ms)[0m  [1m[35mCREATE DATABASE "wogi_app_development" ENCODING = 'unicode'[0m
+  [1m[35m (39.0ms)[0m  [1m[35mCREATE DATABASE "wogi_app_test" ENCODING = 'unicode'[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-08-01 19:57:31.823990', '2024-08-01 19:57:31.823992') RETURNING "key"[0m
+Migrating to CreateAuths (20240731122427)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "auths" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "role" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731122427') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddNameToAuths (20240731194123)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "auths" ADD "name" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731194123') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUseridToAuths (20240731194406)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "auths" ADD "userid" uuid[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731194406') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddIndexToAuth (20240731200119)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_auths_on_userid" ON "auths" ("userid")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_auths_on_email" ON "auths" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "auths" ALTER COLUMN "userid" SET NOT NULL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "auths" ALTER COLUMN "email" SET NOT NULL[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731200119') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrands (20240731201739)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "brands" ("name" character varying NOT NULL, "state" character varying NOT NULL, "brand_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731201739') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProducts (20240731201914)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "products" ("name" character varying NOT NULL, "description" character varying, "state" character varying NOT NULL, "product_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731201914') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrandOwnerships (20240731202138)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "brand_ownerships" ("brand_id" uuid NOT NULL, "product_id" uuid NOT NULL, "conn_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731202138') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateClientProducts (20240731202655)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "client_products" ("state" character varying NOT NULL, "prod_id" uuid NOT NULL, "payout_rate" float NOT NULL, "client_id" uuid NOT NULL, "conn_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731202655') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddConstraintsAndIndexes (20240731203136)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_brands_on_brand_id" ON "brands" ("brand_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_brands_on_name" ON "brands" ("name")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_products_on_product_id" ON "products" ("product_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_products_on_name" ON "products" ("name")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_brand_ownerships_on_conn_id" ON "brand_ownerships" ("conn_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "brand_ownerships" ADD CONSTRAINT "fk_rails_6c753c3356"
+FOREIGN KEY ("brand_id")
+  REFERENCES "brands" ("brand_id")
+[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "brand_ownerships" ADD CONSTRAINT "fk_rails_8b8812bf5d"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("product_id")
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_client_products_on_conn_id" ON "client_products" ("conn_id")[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "client_products" ADD CONSTRAINT "fk_rails_167dcb595a"
+FOREIGN KEY ("client_id")
+  REFERENCES "auths" ("userid")
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "client_products" ADD CONSTRAINT "fk_rails_a3c075b4a0"
+FOREIGN KEY ("prod_id")
+  REFERENCES "brand_ownerships" ("conn_id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731203136') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCards (20240801182910)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "cards" ("card_id" uuid NOT NULL PRIMARY KEY, "card_number" character varying NOT NULL, "client_id" uuid NOT NULL, "activation_number" character varying NOT NULL, "pin" character varying, "prod_id" uuid NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_cards_on_card_id" ON "cards" ("card_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_cards_on_card_number" ON "cards" ("card_number")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_cards_on_activation_number" ON "cards" ("activation_number")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "cards" ADD CONSTRAINT "fk_rails_8d3bab1c76"
+FOREIGN KEY ("client_id")
+  REFERENCES "auths" ("userid")
+[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "cards" ADD CONSTRAINT "fk_rails_c89b79ad98"
+FOREIGN KEY ("prod_id")
+  REFERENCES "brand_ownerships" ("conn_id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240801182910') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateClears (20240801185348)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "clears" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240801185348') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLogs (20240801194301)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "logs" ("log_id" uuid NOT NULL PRIMARY KEY, "user_id" uuid, "action" character varying NOT NULL, "client_id" uuid, "brand_id" uuid, "product_id" uuid, "card_id" uuid, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_logs_on_log_id" ON "logs" ("log_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE INDEX "index_logs_on_user_id" ON "logs" ("user_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_logs_on_client_id" ON "logs" ("client_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_logs_on_brand_id" ON "logs" ("brand_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_logs_on_product_id" ON "logs" ("product_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_8fc980bf44"
+FOREIGN KEY ("user_id")
+  REFERENCES "auths" ("userid")
+[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_c037da1d86"
+FOREIGN KEY ("client_id")
+  REFERENCES "auths" ("userid")
+[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_9886271d67"
+FOREIGN KEY ("brand_id")
+  REFERENCES "brands" ("brand_id")
+[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_3a1ffa1d19"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("product_id")
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_2c80075c3c"
+FOREIGN KEY ("card_id")
+  REFERENCES "cards" ("card_id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240801194301') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuth Create (2.8ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-08-01 19:57:35.589582"], ["updated_at", "2024-08-01 19:57:35.589582"], ["name", "Admin Adminson"], ["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuth Create (1.9ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 19:57:35.830801"], ["updated_at", "2024-08-01 19:57:35.830801"], ["name", "A. Z. Fell"], ["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuth Create (4.5ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 19:57:36.071820"], ["updated_at", "2024-08-01 19:57:36.071820"], ["name", "Anthony J Crowley"], ["userid", "512eec1d-58b4-4ebb-9742-4d73e050014b"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBrand Create (3.2ms)[0m  [1m[32mINSERT INTO "brands" ("name", "state", "brand_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "brand_id"[0m  [["name", "The Chattering Order"], ["state", "inactive"], ["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["created_at", "2024-08-01 19:57:36.088102"], ["updated_at", "2024-08-01 19:57:36.088102"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBrand Create (1.5ms)[0m  [1m[32mINSERT INTO "brands" ("name", "state", "brand_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "brand_id"[0m  [["name", "Give Me Coffee or Give Me Death"], ["state", "active"], ["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["created_at", "2024-08-01 19:57:36.095241"], ["updated_at", "2024-08-01 19:57:36.095241"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBrand Create (0.6ms)[0m  [1m[32mINSERT INTO "brands" ("name", "state", "brand_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "brand_id"[0m  [["name", "The Small Back Room"], ["state", "active"], ["brand_id", "4a60eb47-6ca3-45fb-a07d-127780b6add9"], ["created_at", "2024-08-01 19:57:36.098575"], ["updated_at", "2024-08-01 19:57:36.098575"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (1.9ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "state", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "product_id"[0m  [["name", "Discount per purchase"], ["description", "Get a discount at your payout rate for every purchase"], ["state", "inactive"], ["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["created_at", "2024-08-01 19:57:36.105870"], ["updated_at", "2024-08-01 19:57:36.105870"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (0.7ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "state", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "product_id"[0m  [["name", "Loyalty points"], ["description", "Earn loyalty points for every purchase"], ["state", "active"], ["product_id", "83ac73aa-f85b-4dcd-ab00-21c60bc54066"], ["created_at", "2024-08-01 19:57:36.108557"], ["updated_at", "2024-08-01 19:57:36.108557"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "state", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "product_id"[0m  [["name", "Refer a friend"], ["description", "Earn discounts for every friend you bring"], ["state", "active"], ["product_id", "80173f88-8ae5-4a6e-aa52-b41827d45e56"], ["created_at", "2024-08-01 19:57:36.110068"], ["updated_at", "2024-08-01 19:57:36.110068"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBrandOwnership Create (1.9ms)[0m  [1m[32mINSERT INTO "brand_ownerships" ("brand_id", "product_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "conn_id"[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["conn_id", "b89dbbf0-eac3-428c-80e4-fd185b6294ec"], ["created_at", "2024-08-01 19:57:36.116553"], ["updated_at", "2024-08-01 19:57:36.116553"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBrandOwnership Create (0.7ms)[0m  [1m[32mINSERT INTO "brand_ownerships" ("brand_id", "product_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "conn_id"[0m  [["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["product_id", "83ac73aa-f85b-4dcd-ab00-21c60bc54066"], ["conn_id", "4d3190ca-5024-45c5-9800-0366c66b687b"], ["created_at", "2024-08-01 19:57:36.119332"], ["updated_at", "2024-08-01 19:57:36.119332"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBrandOwnership Create (0.7ms)[0m  [1m[32mINSERT INTO "brand_ownerships" ("brand_id", "product_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "conn_id"[0m  [["brand_id", "4a60eb47-6ca3-45fb-a07d-127780b6add9"], ["product_id", "80173f88-8ae5-4a6e-aa52-b41827d45e56"], ["conn_id", "004f46f6-f001-4fdb-8b33-1465f16aeed0"], ["created_at", "2024-08-01 19:57:36.120787"], ["updated_at", "2024-08-01 19:57:36.120787"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClientProduct Create (1.8ms)[0m  [1m[32mINSERT INTO "client_products" ("state", "prod_id", "payout_rate", "client_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "conn_id"[0m  [["state", "active"], ["prod_id", "b89dbbf0-eac3-428c-80e4-fd185b6294ec"], ["payout_rate", 1.23], ["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["conn_id", "b935eef7-fa59-4480-9a66-7ed973d440c4"], ["created_at", "2024-08-01 19:57:36.127764"], ["updated_at", "2024-08-01 19:57:36.127764"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClientProduct Create (0.9ms)[0m  [1m[32mINSERT INTO "client_products" ("state", "prod_id", "payout_rate", "client_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "conn_id"[0m  [["state", "inactive"], ["prod_id", "4d3190ca-5024-45c5-9800-0366c66b687b"], ["payout_rate", 1.23], ["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["conn_id", "ab6a96c4-2459-4c3e-9687-cc7c3a5bc506"], ["created_at", "2024-08-01 19:57:36.130457"], ["updated_at", "2024-08-01 19:57:36.130457"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClientProduct Create (0.7ms)[0m  [1m[32mINSERT INTO "client_products" ("state", "prod_id", "payout_rate", "client_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "conn_id"[0m  [["state", "active"], ["prod_id", "004f46f6-f001-4fdb-8b33-1465f16aeed0"], ["payout_rate", 1.23], ["client_id", "512eec1d-58b4-4ebb-9742-4d73e050014b"], ["conn_id", "76228b7d-2a8e-4a03-a440-3ec2fda0cec6"], ["created_at", "2024-08-01 19:57:36.132159"], ["updated_at", "2024-08-01 19:57:36.132159"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/register" for ::1 at 2024-08-01 22:57:47 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mAuth Create (1.8ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 19:57:48.183673"], ["updated_at", "2024-08-01 19:57:48.183673"], ["name", nil], ["userid", "8fc59463-1b2f-409c-a569-4c2a51e499ee"]]
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:56:in `add_user'
+  [1m[36mLog Create (5.2ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "b3918501-cae4-4101-8f52-07b2e75b5605"], ["user_id", "8fc59463-1b2f-409c-a569-4c2a51e499ee"], ["action", "User registered"], ["client_id", "8fc59463-1b2f-409c-a569-4c2a51e499ee"], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 19:57:48.193557"], ["updated_at", "2024-08-01 19:57:48.193557"]]
+  ↳ app/controllers/auths_controller.rb:56:in `add_user'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:56:in `add_user'
+Completed 200 OK in 278ms (Views: 0.2ms | ActiveRecord: 37.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-08-01 22:58:16 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mAuth Create (4.1ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 19:58:17.081801"], ["updated_at", "2024-08-01 19:58:17.081801"], ["name", nil], ["userid", "6dc68102-2a8c-4fae-bd11-7af00db7e7c3"]]
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/auths_controller.rb:53:in `add_user'
+Completed 500 Internal Server Error in 277ms (ActiveRecord: 4.6ms (1 query, 0 cached) | GC: 2.2ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_auths_on_email"
+DETAIL:  Key (email)=(crowleynotcrawley1@email.com) already exists.
+):
+
+Causes:
+PG::UniqueViolation (ERROR:  duplicate key value violates unique constraint "index_auths_on_email"
+DETAIL:  Key (email)=(crowleynotcrawley1@email.com) already exists.
+)
+  

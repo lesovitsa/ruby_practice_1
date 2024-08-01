@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_01_191858) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_01_194301) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,11 +72,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_01_191858) do
   end
 
   create_table "logs", primary_key: "log_id", id: :uuid, default: nil, force: :cascade do |t|
-    t.uuid "user_id", null: false
+    t.uuid "user_id"
     t.string "action", null: false
     t.uuid "client_id"
     t.uuid "brand_id"
     t.uuid "product_id"
+    t.uuid "card_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand_id"], name: "index_logs_on_brand_id"
@@ -105,5 +106,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_01_191858) do
   add_foreign_key "logs", "auths", column: "client_id", primary_key: "userid"
   add_foreign_key "logs", "auths", column: "user_id", primary_key: "userid"
   add_foreign_key "logs", "brands", primary_key: "brand_id"
+  add_foreign_key "logs", "cards", primary_key: "card_id"
   add_foreign_key "logs", "products", primary_key: "product_id"
 end
