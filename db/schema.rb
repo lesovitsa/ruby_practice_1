@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_01_185348) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_01_191858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_01_185348) do
     t.index ["conn_id"], name: "index_client_products_on_conn_id", unique: true
   end
 
+  create_table "logs", primary_key: "log_id", id: :uuid, default: nil, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.string "action", null: false
+    t.uuid "client_id"
+    t.uuid "brand_id"
+    t.uuid "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_logs_on_brand_id"
+    t.index ["client_id"], name: "index_logs_on_client_id"
+    t.index ["log_id"], name: "index_logs_on_log_id", unique: true
+    t.index ["product_id"], name: "index_logs_on_product_id"
+    t.index ["user_id"], name: "index_logs_on_user_id"
+  end
+
   create_table "products", primary_key: "product_id", id: :uuid, default: nil, force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
@@ -87,4 +102,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_01_185348) do
   add_foreign_key "cards", "brand_ownerships", column: "prod_id", primary_key: "conn_id"
   add_foreign_key "client_products", "auths", column: "client_id", primary_key: "userid"
   add_foreign_key "client_products", "brand_ownerships", column: "prod_id", primary_key: "conn_id"
+  add_foreign_key "logs", "auths", column: "client_id", primary_key: "userid"
+  add_foreign_key "logs", "auths", column: "user_id", primary_key: "userid"
+  add_foreign_key "logs", "brands", primary_key: "brand_id"
+  add_foreign_key "logs", "products", primary_key: "product_id"
 end

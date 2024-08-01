@@ -19,31 +19,44 @@ class AuthsController < ApplicationController
     
         if @user && @user.authenticate(params[:password])
             token = encode_token({user_id: @user.id})
-            render json: {user: @user, token: token}
+            render json: {
+                user: @user,
+                token: token
+            }, status: 200
         else
-            render json: {error: "Invalid email or password"}
+            render json: {
+                error: "Invalid email or password"
+            }, status: 400
         end
     end
 
     # ADD CLIENT AS ADMIN
     def add_client
-        add_user("client", parameters)
+        add_user("client")
     end
 
     
     private
 
     def add_user(role)
-        struct = auth_params.merge({userid: SecureRandom.uuid})
+        struct = auth_params.merge({ userid: SecureRandom.uuid })
         if struct[:role] != role
-            render json: {error: struct}
+            render json: {
+                error: "Invalid argument"
+            }, status: 400
+        
         else
             @user = Auth.create(struct)
             if @user.valid?
-                token = encode_token({user_id: @user.id})
-                render json: {user: @user, token: token}
+                token = encode_token({ user_id: @user.id })
+                render json: {
+                    user: @user,
+                    token: token
+                }, status: 200
             else
-                render json: {error: "Invalid email or password"}
+                render json: {
+                    error: "Invalid email or password"
+                }, status: 400
             end
         end
     end

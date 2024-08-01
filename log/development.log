@@ -27824,3 +27824,82 @@ Processing by CardsController#cancel as */*
 Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.6ms (4 queries, 2 cached) | GC: 0.2ms)
 
 
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateLogs (20240801191858)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "logs" ("log_id" uuid NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "action" character varying NOT NULL, "client_id" uuid, "brand_id" uuid, "product_id" uuid, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_logs_on_log_id" ON "logs" ("log_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE INDEX "index_logs_on_user_id" ON "logs" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_logs_on_client_id" ON "logs" ("client_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_logs_on_brand_id" ON "logs" ("brand_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_logs_on_product_id" ON "logs" ("product_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_8fc980bf44"
+FOREIGN KEY ("user_id")
+  REFERENCES "auths" ("userid")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_c037da1d86"
+FOREIGN KEY ("client_id")
+  REFERENCES "auths" ("userid")
+[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_9886271d67"
+FOREIGN KEY ("brand_id")
+  REFERENCES "brands" ("brand_id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "logs" ADD CONSTRAINT "fk_rails_3a1ffa1d19"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("product_id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240801191858') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/login" for ::1 at 2024-08-01 22:25:06 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:24: syntax error, unexpected local variable or method, expecting '}'
+                token: token
+                ^~~~~
+):
+  
+app/controllers/auths_controller.rb:24: syntax error, unexpected local variable or method, expecting '}'
+Started POST "/login" for ::1 at 2024-08-01 22:25:19 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (1.8ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:18:in `login'
+Completed 200 OK in 290ms (Views: 0.6ms | ActiveRecord: 9.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2024-08-01 22:25:26 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:18:in `login'
+Completed 400 Bad Request in 268ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-08-01 22:27:07 +0300
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/auths_controller.rb:69: syntax error, unexpected `end'):
+  
+app/controllers/auths_controller.rb:69: syntax error, unexpected `end'
+Started POST "/register" for ::1 at 2024-08-01 22:27:57 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+Completed 400 Bad Request in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-08-01 22:28:31 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:49:in `add_user'
+  [1m[36mAuth Create (4.1ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 19:28:31.499210"], ["updated_at", "2024-08-01 19:28:31.499210"], ["name", nil], ["userid", "e15af97e-14a8-4ad9-ad8a-8accf6b017e2"]]
+  ↳ app/controllers/auths_controller.rb:49:in `add_user'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:49:in `add_user'
+Completed 200 OK in 315ms (Views: 0.1ms | ActiveRecord: 19.4ms (1 query, 0 cached) | GC: 24.4ms)
+
+
