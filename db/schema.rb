@@ -105,7 +105,4 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_01_194301) do
   add_foreign_key "client_products", "brand_ownerships", column: "prod_id", primary_key: "conn_id"
   add_foreign_key "logs", "auths", column: "client_id", primary_key: "userid"
   add_foreign_key "logs", "auths", column: "user_id", primary_key: "userid"
-  add_foreign_key "logs", "brands", primary_key: "brand_id"
-  add_foreign_key "logs", "cards", primary_key: "card_id"
-  add_foreign_key "logs", "products", primary_key: "product_id"
 end

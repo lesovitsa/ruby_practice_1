@@ -4,6 +4,13 @@ class ClientCatalogsController < ApplicationController
     def get_all
         @all_products = ClientProduct.all.where(client_id: get_current_user_id)
         
+        Log.create({
+            log_id: SecureRandom.uuid,
+            user_id: get_current_user_id,
+            action: "Client viewed all products",
+            client_id: get_current_user_id
+        })
+        
         render json: {
             all_products: @all_products.map { |prod| format_product(prod) }
         }, status: 200
@@ -20,6 +27,14 @@ class ClientCatalogsController < ApplicationController
         @all_products = ClientProduct.all.where(client_id: get_current_user_id).map { |prod| format_product(prod) }
         @matching_products = @all_products.select{ |product| product[:product][:product_id] == catalog_params[:product_id] }
 
+        Log.create({
+            log_id: SecureRandom.uuid,
+            user_id: get_current_user_id,
+            action: "Client viewed all products by product",
+            product_id: catalog_params[:product_id],
+            client_id: get_current_user_id
+        })
+
         render json: {
             matching_products: @matching_products
         }, status: 200
@@ -35,6 +50,14 @@ class ClientCatalogsController < ApplicationController
 
         @all_products = ClientProduct.all.where(client_id: get_current_user_id).map { |prod| format_product(prod) }
         @matching_products = @all_products.select{ |product| product[:brand][:brand_id] == catalog_params[:brand_id] }
+
+        Log.create({
+            log_id: SecureRandom.uuid,
+            user_id: get_current_user_id,
+            action: "Client viewed all products by brand",
+            brand_id: catalog_params[:brand_id],
+            client_id: get_current_user_id
+        })
 
         render json: {
             matching_products: @matching_products

@@ -8,10 +8,21 @@ class ProductsController < ApplicationController
         @product = Product.create(struct)
 
         if @product.valid?
+            Log.create({
+                log_id: SecureRandom.uuid,
+                user_id: get_current_user_id,
+                action: "Created product",
+                product_id: struct[:product_id]
+            })
             render json: {
                 product: @product
             }, status: 200
         else
+            Log.create({
+                log_id: SecureRandom.uuid,
+                user_id: get_current_user_id,
+                action: "Failed to create product"
+            })
             render json: {
                 error: "Error registering product"
             }, status: 400
@@ -24,10 +35,22 @@ class ProductsController < ApplicationController
         if @product.valid?
             @product.update(product_params)
             @product.reload
+            Log.create({
+                log_id: SecureRandom.uuid,
+                user_id: get_current_user_id,
+                action: "Updated product",
+                product_id: @product[:product_id]
+            })
             render json: {
                 product: @product
             }, status: 200
         else
+            Log.create({
+                log_id: SecureRandom.uuid,
+                user_id: get_current_user_id,
+                action: "Failed to update product",
+                product_id: @product[:product_id]
+            })
             render json: {
                 error: "Error updating product"
             }, status: 400

@@ -8,6 +8,13 @@ class BrandOwnershipsController < ApplicationController
         @brand_ownership = BrandOwnership.create(struct)
 
         if @brand_ownership.valid?
+            Log.create({
+                log_id: SecureRandom.uuid,
+                user_id: get_current_user_id,
+                action: "Add product to brand",
+                product_id: struct[:product_id],
+                brand_id: struct[:brand_id]
+            })
             render json: {
                 brand_ownership: @brand_ownership
             }, status: 200
@@ -22,6 +29,14 @@ class BrandOwnershipsController < ApplicationController
         @brand_ownership = BrandOwnership.find(brand_ownership_params[:conn_id])
 
         @brand_ownership.destroy
+
+        Log.create({
+            log_id: SecureRandom.uuid,
+            user_id: get_current_user_id,
+            action: "Remove product from brand",
+            product_id: @brand_ownership[:product_id],
+            brand_id: @brand_ownership[:brand_id]
+        })
         render json: {
             message: "Product removed from brand"
         }, status: 200

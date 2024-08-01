@@ -19,6 +19,11 @@ class AuthsController < ApplicationController
     
         if @user && @user.authenticate(params[:password])
             token = encode_token({user_id: @user.id})
+            Log.create({ 
+                log_id: SecureRandom.uuid,
+                user_id: @user[:userid],
+                action: "User logged in"
+            })
             render json: {
                 user: @user,
                 token: token
@@ -41,6 +46,10 @@ class AuthsController < ApplicationController
     def add_user(role)
         struct = auth_params.merge({ userid: SecureRandom.uuid })
         if struct[:role] != role
+            Log.create({ 
+                log_id: SecureRandom.uuid,
+                action: "User failed to register"
+            })
             render json: {
                 error: "Invalid argument"
             }, status: 400
@@ -49,6 +58,12 @@ class AuthsController < ApplicationController
             @user = Auth.create(struct)
             if @user.valid?
                 token = encode_token({ user_id: @user.id })
+                Log.create({ 
+                    log_id: SecureRandom.uuid,
+                    user_id: struct[:userid],
+                    action: "User registered",
+                    client_id: role == "client" ? struct[:userid] : nil
+                })
                 render json: {
                     user: @user,
                     token: token
