@@ -29575,3 +29575,176 @@ Processing by CardsController#get_all_cards as */*
 Completed 200 OK in 33ms (Views: 0.4ms | ActiveRecord: 10.8ms (9 queries, 3 cached) | GC: 0.8ms)
 
 
+Started POST "/login" for ::1 at 2024-08-02 00:03:48 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:18:in `login'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:22:in `login'
+  [1m[36mLog Create (1.3ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "5eb7a7b5-d71f-4288-85b3-9fa5ab8aac6e"], ["user_id", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["action", "User logged in"], ["client_id", nil], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:03:48.418930"], ["updated_at", "2024-08-01 21:03:48.418930"]]
+  ↳ app/controllers/auths_controller.rb:22:in `login'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:22:in `login'
+Completed 200 OK in 268ms (Views: 0.3ms | ActiveRecord: 13.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-02 00:04:41 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe", "state"=>"ddd"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:33:in `update_brand'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:37:in `update_brand'
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:38:in `update_brand'
+  [1m[36mLog Create (1.1ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "26b1ad1b-7cc2-4749-86e3-21b5590baa52"], ["user_id", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["action", "Update brand"], ["client_id", nil], ["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:04:41.614258"], ["updated_at", "2024-08-01 21:04:41.614258"]]
+  ↳ app/controllers/brands_controller.rb:38:in `update_brand'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brands_controller.rb:38:in `update_brand'
+Completed 200 OK in 24ms (Views: 0.5ms | ActiveRecord: 9.5ms (6 queries, 1 cached) | GC: 1.0ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-02 00:06:21 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe", "state"=>"ddd"}
+  [1m[36mAuth Load (0.7ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:33:in `update_brand'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:37:in `update_brand'
+  [1m[36mAuth Load (0.1ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:38:in `update_brand'
+  [1m[36mLog Create (1.4ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "ed235f0e-ee94-4908-ab2e-a8df01e16f0d"], ["user_id", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["action", "Update brand"], ["client_id", nil], ["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:06:22.073102"], ["updated_at", "2024-08-01 21:06:22.073102"]]
+  ↳ app/controllers/brands_controller.rb:38:in `update_brand'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brands_controller.rb:38:in `update_brand'
+Completed 200 OK in 44ms (Views: 0.2ms | ActiveRecord: 26.7ms (6 queries, 1 cached) | GC: 1.4ms)
+
+
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBrand Create (4.9ms)[0m  [1m[32mINSERT INTO "brands" ("name", "state", "brand_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "brand_id"[0m  [["name", "test"], ["state", "active"], ["brand_id", "ec51bf32-92d6-47a3-893e-a9eed75e2b8f"], ["created_at", "2024-08-01 21:08:54.534291"], ["updated_at", "2024-08-01 21:08:54.534291"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+Started PATCH "/brands/update" for ::1 at 2024-08-02 00:09:35 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe", "state"=>"ddd"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:33:in `update_brand'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:47:in `update_brand'
+  [1m[36mLog Create (1.1ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "43430311-8eea-49b3-a969-948f0eb9f67a"], ["user_id", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["action", "Failed to update brand"], ["client_id", nil], ["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:09:36.017207"], ["updated_at", "2024-08-01 21:09:36.017207"]]
+  ↳ app/controllers/brands_controller.rb:47:in `update_brand'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brands_controller.rb:47:in `update_brand'
+Completed 400 Bad Request in 29ms (Views: 0.1ms | ActiveRecord: 16.3ms (5 queries, 2 cached) | GC: 2.4ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-02 00:09:43 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe", "state"=>"active"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:33:in `update_brand'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:35:in `update_brand'
+  [1m[36mBrand Update (2.4ms)[0m  [1m[33mUPDATE "brands" SET "state" = $1, "updated_at" = $2 WHERE "brands"."brand_id" = $3[0m  [["state", "active"], ["updated_at", "2024-08-01 21:09:43.961759"], ["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"]]
+  ↳ app/controllers/brands_controller.rb:35:in `update_brand'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brands_controller.rb:35:in `update_brand'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:36:in `update_brand'
+  [1m[36mAuth Load (0.1ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:37:in `update_brand'
+  [1m[36mLog Create (1.3ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "93fe3e2c-ca29-4cfd-8326-4887560f3adb"], ["user_id", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["action", "Update brand"], ["client_id", nil], ["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:09:43.969327"], ["updated_at", "2024-08-01 21:09:43.969327"]]
+  ↳ app/controllers/brands_controller.rb:37:in `update_brand'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brands_controller.rb:37:in `update_brand'
+Completed 200 OK in 16ms (Views: 0.4ms | ActiveRecord: 5.1ms (7 queries, 1 cached) | GC: 0.7ms)
+
+
+Started POST "/register" for ::1 at 2024-08-02 00:13:02 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:58:in `add_user'
+  [1m[36mAuth Create (3.1ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 21:13:03.232596"], ["updated_at", "2024-08-01 21:13:03.232596"], ["name", nil], ["userid", "ed7b8bff-6a4d-403f-b590-b961998f747d"]]
+  ↳ app/controllers/auths_controller.rb:58:in `add_user'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:58:in `add_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:61:in `add_user'
+  [1m[36mLog Create (1.3ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "48b6655c-6727-444e-94e6-66ddd16a2da8"], ["user_id", "ed7b8bff-6a4d-403f-b590-b961998f747d"], ["action", "User registered"], ["client_id", "ed7b8bff-6a4d-403f-b590-b961998f747d"], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:13:03.247151"], ["updated_at", "2024-08-01 21:13:03.247151"]]
+  ↳ app/controllers/auths_controller.rb:61:in `add_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:61:in `add_user'
+Completed 200 OK in 283ms (Views: 0.2ms | ActiveRecord: 29.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for ::1 at 2024-08-02 00:13:25 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:58:in `add_user'
+  [1m[36mAuth Create (4.2ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 21:13:25.760482"], ["updated_at", "2024-08-01 21:13:25.760482"], ["name", nil], ["userid", "23374649-f5fe-4b24-bd7e-2d86763d154d"]]
+  ↳ app/controllers/auths_controller.rb:58:in `add_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/auths_controller.rb:58:in `add_user'
+Completed 500 Internal Server Error in 259ms (ActiveRecord: 12.1ms (1 query, 0 cached) | GC: 1.2ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_auths_on_email"
+DETAIL:  Key (email)=(cl@ema) already exists.
+):
+
+Causes:
+PG::UniqueViolation (ERROR:  duplicate key value violates unique constraint "index_auths_on_email"
+DETAIL:  Key (email)=(cl@ema) already exists.
+)
+  
+Started POST "/register" for ::1 at 2024-08-02 00:13:30 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:58:in `add_user'
+  [1m[36mAuth Create (0.9ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 21:13:30.321700"], ["updated_at", "2024-08-01 21:13:30.321700"], ["name", nil], ["userid", "4ae05486-6702-46c3-8249-01b6f0d48c4b"]]
+  ↳ app/controllers/auths_controller.rb:58:in `add_user'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:58:in `add_user'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:61:in `add_user'
+  [1m[36mLog Create (0.9ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "b3b1fa17-d844-465e-b323-bad8aced7ef3"], ["user_id", "4ae05486-6702-46c3-8249-01b6f0d48c4b"], ["action", "User registered"], ["client_id", "4ae05486-6702-46c3-8249-01b6f0d48c4b"], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:13:30.329510"], ["updated_at", "2024-08-01 21:13:30.329510"]]
+  ↳ app/controllers/auths_controller.rb:61:in `add_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:61:in `add_user'
+Completed 200 OK in 282ms (Views: 0.1ms | ActiveRecord: 5.8ms (2 queries, 0 cached) | GC: 0.1ms)
+
+
+Started POST "/register" for ::1 at 2024-08-02 00:13:49 +0300
+Processing by AuthsController#create_client as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "role"=>"client"}
+Completed 400 Bad Request in 258ms (Views: 0.2ms | ActiveRecord: 7.5ms (0 queries, 0 cached) | GC: 0.0ms)
+
+

@@ -32,8 +32,7 @@ class BrandsController < ApplicationController
     def update_brand
         @brand = Brand.find(brand_params[:brand_id])
 
-        if @brand.valid?
-            @brand.update(brand_params)
+        if @brand.update(brand_params)
             @brand.reload
             Log.create({
                 log_id: SecureRandom.uuid,

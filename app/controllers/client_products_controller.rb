@@ -60,8 +60,9 @@ class ClientProductsController < ApplicationController
             if @client_product[:payout_rate] != client_product_params[:payout_rate] && 
                 (@client_product[:client_id] == client_product_params[:client_id] || !client_product_params[:client_id]) &&
                 (@client_product[:prod_id] == client_product_params[:prod_id] || !client_product_params[:prod_id]) && 
-                (@client_product[:state] == client_product_params[:state] || !client_product_params[:state])
+                (@client_product[:state] == client_product_params[:state] || !client_product_params[:state]) && 
                 @client_product.update(client_product_params)
+
                 @client_product.reload
 
                 Log.create({
@@ -101,8 +102,9 @@ class ClientProductsController < ApplicationController
             if @client_product[:state] != client_product_params[:state] && 
                 (@client_product[:client_id] == client_product_params[:client_id] || !client_product_params[:client_id]) &&
                 (@client_product[:prod_id] == client_product_params[:prod_id] || !client_product_params[:prod_id]) && 
-                (@client_product[:payout_rate] == client_product_params[:payout_rate] || !client_product_params[:payout_rate])
+                (@client_product[:payout_rate] == client_product_params[:payout_rate] || !client_product_params[:payout_rate]) && 
                 @client_product.update(client_product_params)
+                
                 @client_product.reload
 
                 Log.create({

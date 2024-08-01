@@ -32,8 +32,7 @@ class ProductsController < ApplicationController
     def update_product
         @product = Product.find(product_params[:product_id])
 
-        if @product.valid?
-            @product.update(product_params)
+        if @product.update(product_params)
             @product.reload
             Log.create({
                 log_id: SecureRandom.uuid,
