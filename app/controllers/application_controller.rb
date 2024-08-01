@@ -37,6 +37,14 @@ class ApplicationController < ActionController::API
     logged_in_user[:role] == "admin"
   end
 
+  def client?
+    logged_in_user[:role] == "client"
+  end
+
+  def get_current_user_id
+    logged_in_user[:userid]
+  end
+
   def compare_user(id)
     render json: { message: "Unauthorized" }, status: :unauthorized unless logged_in_user[:userid] == id
   end
@@ -47,5 +55,9 @@ class ApplicationController < ActionController::API
 
   def authorized_admin
     render json: { message: "Unauthorized" }, status: :unauthorized unless admin?
+  end
+
+  def authorized_client
+    render json: { message: "Unauthorized" }, status: :unauthorized unless client?
   end
 end
