@@ -1,7 +1,7 @@
 require 'securerandom'
 
 class CardsController < ApplicationController
-    before_action :authorized_client, only: [:request_card, :cancel]
+    before_action :authorized_client, only: [:request_card, :cancel, :get_all_cards]
 
     def request_card
         @pin = rand.to_s[2..7] if card_params[:pin_requested]

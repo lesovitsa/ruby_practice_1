@@ -29748,3 +29748,478 @@ Processing by AuthsController#create_client as */*
 Completed 400 Bad Request in 258ms (Views: 0.2ms | ActiveRecord: 7.5ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+  [1m[36mBrand Load (0.8ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  [1m[36mLog Load (1.1ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."client_id" = $1 /* loading for pp */ LIMIT $2[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 11]]
+Started GET "/client/opreations" for ::1 at 2024-08-02 00:40:05 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LogsController#generate_client_operations_report as */*
+  [1m[36mAuth Load (0.5ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Filter chain halted as :authorized_client rendered or redirected
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 5.6ms (2 queries, 1 cached) | GC: 0.1ms)
+
+
+Started POST "/login" for ::1 at 2024-08-02 00:40:28 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:18:in `login'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:22:in `login'
+  [1m[36mLog Create (3.0ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "6febcbe6-a2ed-4e39-a3ae-dd539ee245ff"], ["user_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["action", "User logged in"], ["client_id", nil], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:40:28.876986"], ["updated_at", "2024-08-01 21:40:28.876986"]]
+  ↳ app/controllers/auths_controller.rb:22:in `login'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:22:in `login'
+Completed 200 OK in 288ms (Views: 0.2ms | ActiveRecord: 14.3ms (2 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/client/operations" for ::1 at 2024-08-02 00:40:58 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/client/operations"):
+  
+Started GET "/client/operations" for ::1 at 2024-08-02 00:41:13 +0300
+Processing by LogsController#generate_client_operations_report as */*
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 404 Not Found in 24ms (ActiveRecord: 10.7ms (2 queries, 1 cached) | GC: 6.4ms)
+
+
+  
+AbstractController::ActionNotFound (The generate_operations_report action could not be found for the :authorized_admin
+callback on LogsController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (7.2.0.beta3) lib/abstract_controller/callbacks.rb:62:in `match?'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:385:in `block in make_lambda'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:178:in `call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:559:in `block in invoke_before'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:559:in `each'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:559:in `invoke_before'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:119:in `block in run_callbacks'
+turbo-rails (2.0.6) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.6) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.0.beta3) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.0.beta3) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.0.beta3) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.0.beta3) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.0.beta3) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.0.beta3) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.0.beta3) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.0.beta3) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.0.beta3) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.0.beta3) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.0.beta3) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.0.beta3) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.0.beta3) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.0.beta3) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.7) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.7) lib/rack/etag.rb:29:in `call'
+rack (3.1.7) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.7) lib/rack/head.rb:15:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.1) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.7) lib/rack/method_override.rb:28:in `call'
+rack (3.1.7) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.0.beta3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.7) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in `call'
+railties (7.2.0.beta3) lib/rails/engine.rb:535:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/client/operations" for ::1 at 2024-08-02 00:41:50 +0300
+Processing by LogsController#generate_client_operations_report as */*
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 8.1ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+  
+NameError (uninitialized constant LogsController::Logs):
+  
+app/controllers/logs_controller.rb:6:in `generate_client_operations_report'
+Started GET "/client/operations" for ::1 at 2024-08-02 00:42:10 +0300
+Processing by LogsController#generate_client_operations_report as */*
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mLog Create (2.6ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "b3bf0a98-c192-44a7-a573-8264104190ab"], ["user_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["action", "Client operations report generated"], ["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:42:10.430876"], ["updated_at", "2024-08-01 21:42:10.430876"]]
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mLog Load (1.3ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/logs_controller.rb:16:in `map'
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 900], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:31:in `format_name'
+Completed 404 Not Found in 46ms (ActiveRecord: 14.8ms (8 queries, 4 cached) | GC: 20.5ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Auth with 'id'=900f4d84-c6db-4294-9219-4481ebe3e408):
+  
+app/controllers/logs_controller.rb:31:in `format_name'
+app/controllers/logs_controller.rb:42:in `format_log_entry'
+app/controllers/logs_controller.rb:16:in `block in generate_client_operations_report'
+app/controllers/logs_controller.rb:16:in `map'
+app/controllers/logs_controller.rb:16:in `generate_client_operations_report'
+Started GET "/client/operations" for ::1 at 2024-08-02 00:42:34 +0300
+Processing by LogsController#generate_client_operations_report as */*
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mLog Create (1.3ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "3d27c5bf-4232-4ffb-a308-7d25fbc68dc6"], ["user_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["action", "Client operations report generated"], ["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:42:34.859535"], ["updated_at", "2024-08-01 21:42:34.859535"]]
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mLog Load (0.3ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/logs_controller.rb:16:in `map'
+  [1m[36mAuth Load (0.1ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:31:in `format_name'
+Completed 404 Not Found in 30ms (ActiveRecord: 13.6ms (8 queries, 4 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Auth with 'id'={:userid=>"900f4d84-c6db-4294-9219-4481ebe3e408"}):
+  
+app/controllers/logs_controller.rb:31:in `format_name'
+app/controllers/logs_controller.rb:42:in `format_log_entry'
+app/controllers/logs_controller.rb:16:in `block in generate_client_operations_report'
+app/controllers/logs_controller.rb:16:in `map'
+app/controllers/logs_controller.rb:16:in `generate_client_operations_report'
+Started GET "/client/operations" for ::1 at 2024-08-02 00:46:29 +0300
+Processing by LogsController#generate_client_operations_report as */*
+  [1m[36mAuth Load (0.6ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mLog Create (1.5ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "8c1ef544-29af-40cb-ae2b-fa767d7fc932"], ["user_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["action", "Client operations report generated"], ["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:46:30.079284"], ["updated_at", "2024-08-01 21:46:30.079284"]]
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mLog Load (0.4ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/logs_controller.rb:16:in `map'
+  [1m[36mAuth Load (0.1ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+Completed 200 OK in 48ms (Views: 0.5ms | ActiveRecord: 22.9ms (19 queries, 15 cached) | GC: 5.9ms)
+
+
+Started GET "/client/operations" for ::1 at 2024-08-02 00:47:06 +0300
+Processing by LogsController#generate_client_operations_report as */*
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mLog Create (1.1ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "b19f06f9-4988-4d7a-bbcf-c33f299fecb5"], ["user_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["action", "Client operations report generated"], ["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:47:06.589391"], ["updated_at", "2024-08-01 21:47:06.589391"]]
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/logs_controller.rb:8:in `generate_client_operations_report'
+  [1m[36mLog Load (0.2ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/logs_controller.rb:16:in `map'
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:34:in `format_name'
+Completed 200 OK in 33ms (Views: 0.2ms | ActiveRecord: 15.0ms (21 queries, 17 cached) | GC: 2.7ms)
+
+
+Started POST "/login" for ::1 at 2024-08-02 00:52:19 +0300
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/config/routes.rb:57: syntax error, unexpected string literal, expecting `do' or '{' or '('
+..."/admin/brand_operations", to "logs#generate_brand_operation...
+...                              ^
+):
+  
+config/routes.rb:57: syntax error, unexpected string literal, expecting `do' or '{' or '('
+Started POST "/login" for ::1 at 2024-08-02 00:53:03 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:18:in `login'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/auths_controller.rb:22:in `login'
+  [1m[36mLog Create (1.6ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "df5a396c-0ec7-4793-a27d-88632297da98"], ["user_id", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["action", "User logged in"], ["client_id", nil], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:53:03.761703"], ["updated_at", "2024-08-01 21:53:03.761703"]]
+  ↳ app/controllers/auths_controller.rb:22:in `login'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/auths_controller.rb:22:in `login'
+Completed 200 OK in 273ms (Views: 0.2ms | ActiveRecord: 13.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admin/brand_operations_report" for ::1 at 2024-08-02 00:53:41 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/admin/brand_operations_report"):
+  
+Started GET "/admin/brand_operations" for ::1 at 2024-08-02 00:53:54 +0300
+Processing by LogsController#generate_brand_operations_report as */*
+  Parameters: {"brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/logs_controller.rb:37:in `generate_brand_operations_report'
+  [1m[36mLog Create (1.3ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "13b8bbda-a095-4f0f-97b1-76a490ef327d"], ["user_id", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["action", "Brand operations report generated"], ["client_id", nil], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:53:54.413941"], ["updated_at", "2024-08-01 21:53:54.413941"]]
+  ↳ app/controllers/logs_controller.rb:37:in `generate_brand_operations_report'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/logs_controller.rb:37:in `generate_brand_operations_report'
+  [1m[36mLog Load (0.5ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."client_id" IS NULL[0m
+  ↳ app/controllers/logs_controller.rb:45:in `map'
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mBrand Load (0.7ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:64:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Brand Load (0.0ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:64:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Brand Load (0.0ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:64:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Brand Load (0.0ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:64:in `format_name'
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+Completed 200 OK in 25ms (Views: 0.3ms | ActiveRecord: 8.0ms (17 queries, 11 cached) | GC: 0.3ms)
+
+
+Started GET "/admin/brand_operations" for ::1 at 2024-08-02 00:54:18 +0300
+Processing by LogsController#generate_brand_operations_report as */*
+  Parameters: {"brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/logs_controller.rb:23:in `generate_brand_operations_report'
+  [1m[36mLog Create (1.2ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "9ea8bb4b-c6f2-4dd8-abde-01af2fe19f87"], ["user_id", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["action", "Brand operations report generated"], ["client_id", nil], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:54:18.956243"], ["updated_at", "2024-08-01 21:54:18.956243"]]
+  ↳ app/controllers/logs_controller.rb:23:in `generate_brand_operations_report'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/logs_controller.rb:23:in `generate_brand_operations_report'
+  [1m[36mLog Load (0.3ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."brand_id" = $1[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"]]
+  ↳ app/controllers/logs_controller.rb:30:in `map'
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:64:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Brand Load (0.0ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:64:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Brand Load (0.0ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:64:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Brand Load (0.0ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:64:in `format_name'
+Completed 200 OK in 38ms (Views: 0.2ms | ActiveRecord: 17.0ms (13 queries, 8 cached) | GC: 5.8ms)
+
+
+Started GET "/admin/client_operations" for ::1 at 2024-08-02 00:54:38 +0300
+Processing by LogsController#generate_client_operations_report as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Filter chain halted as :authorized_client rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/admin/client_operations" for ::1 at 2024-08-02 00:55:16 +0300
+Processing by LogsController#generate_client_operations as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/logs_controller.rb:37:in `generate_client_operations'
+  [1m[36mLog Create (1.2ms)[0m  [1m[32mINSERT INTO "logs" ("log_id", "user_id", "action", "client_id", "brand_id", "product_id", "card_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "log_id"[0m  [["log_id", "4a869b1a-e244-40b9-b7ee-6cea91fc4b0c"], ["user_id", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["action", "Brand operations report generated"], ["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["brand_id", nil], ["product_id", nil], ["card_id", nil], ["created_at", "2024-08-01 21:55:17.047993"], ["updated_at", "2024-08-01 21:55:17.047993"]]
+  ↳ app/controllers/logs_controller.rb:37:in `generate_client_operations'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/logs_controller.rb:37:in `generate_client_operations'
+  [1m[36mLog Load (0.4ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/logs_controller.rb:45:in `map'
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mAuth Load (0.1ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."userid" = $1 LIMIT $2[0m  [["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  ↳ app/controllers/logs_controller.rb:62:in `format_name'
+Completed 200 OK in 29ms (Views: 0.2ms | ActiveRecord: 13.8ms (21 queries, 16 cached) | GC: 1.3ms)
+
+

@@ -3,7 +3,7 @@ class CreateLogs < ActiveRecord::Migration[7.2]
 
     create_table :logs, id: false do |t|
       t.uuid :log_id, primary_key: true
-      t.uuid :user_id, null: true # for the purpose of loggine failed registration
+      t.uuid :user_id, null: true # for the purpose of logging failed registration
       t.string :action, null: false
       t.uuid :client_id, null: true
       t.uuid :brand_id, null: true

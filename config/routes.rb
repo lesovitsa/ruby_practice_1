@@ -51,4 +51,9 @@ Rails.application.routes.draw do
   delete "/client/card/cancel", to: "cards#cancel"
   get "/client/cards/all", to: "cards#get_all_cards"
   post "/client/card/use", to: "cards#use"
+
+  # reports
+  get "/client/operations", to: "logs#generate_client_operations_report"
+  get "/admin/brand_operations", to: "logs#generate_brand_operations"
+  get "/admin/client_operations", to: "logs#generate_client_operations"
 end
