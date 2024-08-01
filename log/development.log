@@ -2517,3 +2517,865 @@ Processing by ClientProductsController#set_state as */*
 Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.4ms (3 queries, 1 cached) | GC: 1.5ms)
 
 
+  [1m[36mClientProduct Load (1.5ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mAuth Load (0.9ms)[0m  [1m[34mSELECT "auths".* FROM "auths" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (121.9ms)[0m  [1m[35mCREATE DATABASE "wogi_app_development" ENCODING = 'unicode'[0m
+  [1m[35m (45.9ms)[0m  [1m[35mCREATE DATABASE "wogi_app_test" ENCODING = 'unicode'[0m
+  [1m[35m (11.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-08-01 15:54:15.977588', '2024-08-01 15:54:15.977590') RETURNING "key"[0m
+Migrating to CreateAuths (20240731122427)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "auths" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "role" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731122427') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddNameToAuths (20240731194123)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "auths" ADD "name" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731194123') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUseridToAuths (20240731194406)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "auths" ADD "userid" uuid[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731194406') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddIndexToAuth (20240731200119)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_auths_on_userid" ON "auths" ("userid")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_auths_on_email" ON "auths" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "auths" ALTER COLUMN "userid" SET NOT NULL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "auths" ALTER COLUMN "email" SET NOT NULL[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731200119') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrands (20240731201739)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "brands" ("name" character varying NOT NULL, "state" character varying NOT NULL, "brand_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731201739') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProducts (20240731201914)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "products" ("name" character varying NOT NULL, "description" character varying, "state" character varying NOT NULL, "product_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731201914') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBrandOwnerships (20240731202138)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "brand_ownerships" ("brand_id" uuid NOT NULL, "product_id" uuid NOT NULL, "conn_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731202138') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateClientProducts (20240731202655)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "client_products" ("state" character varying NOT NULL, "prod_id" uuid NOT NULL, "payout_rate" float NOT NULL, "client_id" uuid NOT NULL, "conn_id" uuid NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731202655') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddConstraintsAndIndexes (20240731203136)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_brands_on_brand_id" ON "brands" ("brand_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_brands_on_name" ON "brands" ("name")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_products_on_product_id" ON "products" ("product_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_products_on_name" ON "products" ("name")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_brand_ownerships_on_conn_id" ON "brand_ownerships" ("conn_id")[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "brand_ownerships" ADD CONSTRAINT "fk_rails_6c753c3356"
+FOREIGN KEY ("brand_id")
+  REFERENCES "brands" ("brand_id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "brand_ownerships" ADD CONSTRAINT "fk_rails_8b8812bf5d"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("product_id")
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_client_products_on_conn_id" ON "client_products" ("conn_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "client_products" ADD CONSTRAINT "fk_rails_167dcb595a"
+FOREIGN KEY ("client_id")
+  REFERENCES "auths" ("userid")
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "client_products" ADD CONSTRAINT "fk_rails_a3c075b4a0"
+FOREIGN KEY ("prod_id")
+  REFERENCES "brand_ownerships" ("conn_id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240731203136') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuth Create (3.8ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "admin"], ["created_at", "2024-08-01 15:54:37.174646"], ["updated_at", "2024-08-01 15:54:37.174646"], ["name", "Admin Adminson"], ["userid", "7bac3a09-79d0-4a58-933a-9597f3475da3"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuth Create (1.6ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 15:54:37.416342"], ["updated_at", "2024-08-01 15:54:37.416342"], ["name", "A. Z. Fell"], ["userid", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuth Create (3.9ms)[0m  [1m[32mINSERT INTO "auths" ("email", "password_digest", "role", "created_at", "updated_at", "name", "userid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["role", "client"], ["created_at", "2024-08-01 15:54:37.656036"], ["updated_at", "2024-08-01 15:54:37.656036"], ["name", "Anthony J Crowley"], ["userid", "512eec1d-58b4-4ebb-9742-4d73e050014b"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBrand Create (3.6ms)[0m  [1m[32mINSERT INTO "brands" ("name", "state", "brand_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "brand_id"[0m  [["name", "The Chattering Order"], ["state", "inactive"], ["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["created_at", "2024-08-01 15:54:37.672633"], ["updated_at", "2024-08-01 15:54:37.672633"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBrand Create (2.7ms)[0m  [1m[32mINSERT INTO "brands" ("name", "state", "brand_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "brand_id"[0m  [["name", "Give Me Coffee or Give Me Death"], ["state", "active"], ["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["created_at", "2024-08-01 15:54:37.679084"], ["updated_at", "2024-08-01 15:54:37.679084"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBrand Create (0.5ms)[0m  [1m[32mINSERT INTO "brands" ("name", "state", "brand_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "brand_id"[0m  [["name", "The Small Back Room"], ["state", "active"], ["brand_id", "4a60eb47-6ca3-45fb-a07d-127780b6add9"], ["created_at", "2024-08-01 15:54:37.684511"], ["updated_at", "2024-08-01 15:54:37.684511"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (2.0ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "state", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "product_id"[0m  [["name", "Discount per purchase"], ["description", "Get a discount at your payout rate for every purchase"], ["state", "inactive"], ["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["created_at", "2024-08-01 15:54:37.691755"], ["updated_at", "2024-08-01 15:54:37.691755"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "state", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "product_id"[0m  [["name", "Loyalty points"], ["description", "Earn loyalty points for every purchase"], ["state", "active"], ["product_id", "83ac73aa-f85b-4dcd-ab00-21c60bc54066"], ["created_at", "2024-08-01 15:54:37.694503"], ["updated_at", "2024-08-01 15:54:37.694503"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "state", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "product_id"[0m  [["name", "Refer a friend"], ["description", "Earn discounts for every friend you bring"], ["state", "active"], ["product_id", "80173f88-8ae5-4a6e-aa52-b41827d45e56"], ["created_at", "2024-08-01 15:54:37.695915"], ["updated_at", "2024-08-01 15:54:37.695915"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuth Load (0.8ms)[0m  [1m[34mSELECT "auths".* FROM "auths" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mBrand Load (1.3ms)[0m  [1m[34mSELECT "brands".* FROM "brands" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mProduct Load (1.9ms)[0m  [1m[34mSELECT "products".* FROM "products" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/brands/add_product" for ::1 at 2024-08-01 18:57:29 +0300
+Processing by BrandOwnershipsController#add_product_to_brand as */*
+  Parameters: {"brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe", "product_id"=>"8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"}
+  [1m[36mAuth Load (0.5ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Filter chain halted as :authorized_admin rendered or redirected
+Completed 401 Unauthorized in 22ms (Views: 0.1ms | ActiveRecord: 7.0ms (2 queries, 1 cached) | GC: 0.5ms)
+
+
+Started POST "/login" for ::1 at 2024-08-01 18:58:02 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (1.1ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:18:in `login'
+Completed 200 OK in 271ms (Views: 0.7ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/brands/add_product" for ::1 at 2024-08-01 18:58:30 +0300
+Processing by BrandOwnershipsController#add_product_to_brand as */*
+  Parameters: {"brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe", "product_id"=>"8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mBrandOwnership Create (7.7ms)[0m  [1m[32mINSERT INTO "brand_ownerships" ("brand_id", "product_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "conn_id"[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["conn_id", "e69a9885-e6b2-42f2-91ba-df1c92f1e892"], ["created_at", "2024-08-01 15:58:30.357085"], ["updated_at", "2024-08-01 15:58:30.357085"]]
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+Completed 200 OK in 36ms (Views: 0.4ms | ActiveRecord: 17.1ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/brands/add_product" for ::1 at 2024-08-01 18:59:02 +0300
+Processing by BrandOwnershipsController#add_product_to_brand as */*
+  Parameters: {"brand_id"=>"17dd9d0d-6d77-4a32-be86-da2080d8e5cd", "product_id"=>"8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"}
+  [1m[36mAuth Load (1.1ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mBrandOwnership Create (1.9ms)[0m  [1m[32mINSERT INTO "brand_ownerships" ("brand_id", "product_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "conn_id"[0m  [["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["conn_id", "ea946288-2d8e-4b9e-841e-f8d6ecef00c0"], ["created_at", "2024-08-01 15:59:02.236780"], ["updated_at", "2024-08-01 15:59:02.236780"]]
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 4.5ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/brands/add_product" for ::1 at 2024-08-01 18:59:10 +0300
+Processing by BrandOwnershipsController#add_product_to_brand as */*
+  Parameters: {"brand_id"=>"4a60eb47-6ca3-45fb-a07d-127780b6add9", "product_id"=>"8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mBrandOwnership Create (1.9ms)[0m  [1m[32mINSERT INTO "brand_ownerships" ("brand_id", "product_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "conn_id"[0m  [["brand_id", "4a60eb47-6ca3-45fb-a07d-127780b6add9"], ["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["conn_id", "51b6813e-0630-47bb-8742-e3f0e3eb7696"], ["created_at", "2024-08-01 15:59:10.623376"], ["updated_at", "2024-08-01 15:59:10.623376"]]
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 2.7ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/brands/add_product" for ::1 at 2024-08-01 18:59:25 +0300
+Processing by BrandOwnershipsController#add_product_to_brand as */*
+  Parameters: {"brand_id"=>"4a60eb47-6ca3-45fb-a07d-127780b6add9", "product_id"=>"83ac73aa-f85b-4dcd-ab00-21c60bc54066"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mBrandOwnership Create (1.3ms)[0m  [1m[32mINSERT INTO "brand_ownerships" ("brand_id", "product_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "conn_id"[0m  [["brand_id", "4a60eb47-6ca3-45fb-a07d-127780b6add9"], ["product_id", "83ac73aa-f85b-4dcd-ab00-21c60bc54066"], ["conn_id", "19a15cf1-88c6-4a6c-aaa4-f51400fd0a23"], ["created_at", "2024-08-01 15:59:25.046798"], ["updated_at", "2024-08-01 15:59:25.046798"]]
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.8ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/brands/add_product" for ::1 at 2024-08-01 18:59:38 +0300
+Processing by BrandOwnershipsController#add_product_to_brand as */*
+  Parameters: {"brand_id"=>"17dd9d0d-6d77-4a32-be86-da2080d8e5cd", "product_id"=>"83ac73aa-f85b-4dcd-ab00-21c60bc54066"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mBrandOwnership Create (1.5ms)[0m  [1m[32mINSERT INTO "brand_ownerships" ("brand_id", "product_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "conn_id"[0m  [["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["product_id", "83ac73aa-f85b-4dcd-ab00-21c60bc54066"], ["conn_id", "9cabaa04-4bba-4d73-9b7b-05fb3bd949f4"], ["created_at", "2024-08-01 15:59:39.008913"], ["updated_at", "2024-08-01 15:59:39.008913"]]
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+Completed 200 OK in 7ms (Views: 0.1ms | ActiveRecord: 3.1ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/brands/add_product" for ::1 at 2024-08-01 18:59:46 +0300
+Processing by BrandOwnershipsController#add_product_to_brand as */*
+  Parameters: {"brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe", "product_id"=>"83ac73aa-f85b-4dcd-ab00-21c60bc54066"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mBrandOwnership Create (1.5ms)[0m  [1m[32mINSERT INTO "brand_ownerships" ("brand_id", "product_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "conn_id"[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["product_id", "83ac73aa-f85b-4dcd-ab00-21c60bc54066"], ["conn_id", "13660763-1c6c-4d51-ad11-6e4ba88f6c35"], ["created_at", "2024-08-01 15:59:46.465290"], ["updated_at", "2024-08-01 15:59:46.465290"]]
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 2.7ms (3 queries, 1 cached) | GC: 1.3ms)
+
+
+  [1m[36mBrandOwnership Load (1.6ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/brands/add_product" for ::1 at 2024-08-01 19:01:31 +0300
+Processing by BrandOwnershipsController#add_product_to_brand as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408", "prod_id"=>"e69a9885-e6b2-42f2-91ba-df1c92f1e892", "state"=>"active", "payout_rate"=>"5.23"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+[31mUnpermitted parameters: :client_id, :prod_id, :state, :payout_rate. Context: { controller: BrandOwnershipsController, action: add_product_to_brand, request: #<ActionDispatch::Request:0x0000000124b16550>, params: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408", "prod_id"=>"e69a9885-e6b2-42f2-91ba-df1c92f1e892", "state"=>"active", "payout_rate"=>"5.23", "controller"=>"brand_ownerships", "action"=>"add_product_to_brand"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mBrandOwnership Create (2.8ms)[0m  [1m[32mINSERT INTO "brand_ownerships" ("brand_id", "product_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "conn_id"[0m  [["brand_id", nil], ["product_id", nil], ["conn_id", "ea7aafdb-a13d-49a6-b6f9-d2c447bfb442"], ["created_at", "2024-08-01 16:01:31.357003"], ["updated_at", "2024-08-01 16:01:31.357003"]]
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/brand_ownerships_controller.rb:8:in `add_product_to_brand'
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 3.5ms (3 queries, 1 cached) | GC: 2.1ms)
+
+
+  
+ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "brand_id" of relation "brand_ownerships" violates not-null constraint
+DETAIL:  Failing row contains (null, null, ea7aafdb-a13d-49a6-b6f9-d2c447bfb442, 2024-08-01 16:01:31.357003, 2024-08-01 16:01:31.357003).
+):
+
+Causes:
+PG::NotNullViolation (ERROR:  null value in column "brand_id" of relation "brand_ownerships" violates not-null constraint
+DETAIL:  Failing row contains (null, null, ea7aafdb-a13d-49a6-b6f9-d2c447bfb442, 2024-08-01 16:01:31.357003, 2024-08-01 16:01:31.357003).
+)
+  
+Started POST "/clients/product/add" for ::1 at 2024-08-01 19:01:58 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/clients/product/add"):
+  
+Started POST "/client/product/add" for ::1 at 2024-08-01 19:02:07 +0300
+Processing by ClientProductsController#add_product_to_client as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408", "prod_id"=>"e69a9885-e6b2-42f2-91ba-df1c92f1e892", "state"=>"active", "payout_rate"=>"5.23"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/client_products_controller.rb:9:in `add_product_to_client'
+  [1m[36mClientProduct Create (6.0ms)[0m  [1m[32mINSERT INTO "client_products" ("state", "prod_id", "payout_rate", "client_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "conn_id"[0m  [["state", "active"], ["prod_id", "e69a9885-e6b2-42f2-91ba-df1c92f1e892"], ["payout_rate", 5.23], ["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["conn_id", "15aef60f-6813-4604-9bfe-66fcc835ddbd"], ["created_at", "2024-08-01 16:02:07.721593"], ["updated_at", "2024-08-01 16:02:07.721593"]]
+  ↳ app/controllers/client_products_controller.rb:9:in `add_product_to_client'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/client_products_controller.rb:9:in `add_product_to_client'
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 7.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/client/product/add" for ::1 at 2024-08-01 19:02:27 +0300
+Processing by ClientProductsController#add_product_to_client as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408", "prod_id"=>"ea946288-2d8e-4b9e-841e-f8d6ecef00c0", "state"=>"active", "payout_rate"=>"5.23"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/client_products_controller.rb:9:in `add_product_to_client'
+  [1m[36mClientProduct Create (1.3ms)[0m  [1m[32mINSERT INTO "client_products" ("state", "prod_id", "payout_rate", "client_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "conn_id"[0m  [["state", "active"], ["prod_id", "ea946288-2d8e-4b9e-841e-f8d6ecef00c0"], ["payout_rate", 5.23], ["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["conn_id", "66cb9c70-7929-4246-85b0-041a9e087f48"], ["created_at", "2024-08-01 16:02:27.288209"], ["updated_at", "2024-08-01 16:02:27.288209"]]
+  ↳ app/controllers/client_products_controller.rb:9:in `add_product_to_client'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/client_products_controller.rb:9:in `add_product_to_client'
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 2.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/client/product/add" for ::1 at 2024-08-01 19:02:54 +0300
+Processing by ClientProductsController#add_product_to_client as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b", "prod_id"=>"ea946288-2d8e-4b9e-841e-f8d6ecef00c0", "state"=>"active", "payout_rate"=>"5.23"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/client_products_controller.rb:9:in `add_product_to_client'
+  [1m[36mClientProduct Create (2.5ms)[0m  [1m[32mINSERT INTO "client_products" ("state", "prod_id", "payout_rate", "client_id", "conn_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "conn_id"[0m  [["state", "active"], ["prod_id", "ea946288-2d8e-4b9e-841e-f8d6ecef00c0"], ["payout_rate", 5.23], ["client_id", "512eec1d-58b4-4ebb-9742-4d73e050014b"], ["conn_id", "b524dafc-04e5-4eb2-93f4-398072f1cc9a"], ["created_at", "2024-08-01 16:02:54.898336"], ["updated_at", "2024-08-01 16:02:54.898336"]]
+  ↳ app/controllers/client_products_controller.rb:9:in `add_product_to_client'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/client_products_controller.rb:9:in `add_product_to_client'
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 3.3ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+  [1m[36mClientProduct Load (1.6ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mClientProduct Load (0.4ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."conn_id" = $1 LIMIT $2[0m  [["conn_id", nil], ["LIMIT", 1]]
+  [1m[36mClientProduct Load (0.6ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1 LIMIT $2[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 1]]
+  [1m[36mClientProduct Load (0.7ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1 /* loading for pp */ LIMIT $2[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 11]]
+Started POST "/login" for ::1 at 2024-08-01 20:13:21 +0300
+Processing by AuthsController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mAuth Load (1.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/auths_controller.rb:18:in `login'
+Completed 200 OK in 279ms (Views: 0.5ms | ActiveRecord: 18.3ms (1 query, 0 cached) | GC: 1.5ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:14:08 +0300
+  
+ActionController::RoutingError (uninitialized constant CilentCatalogController):
+
+Causes:
+ActionDispatch::MissingController (uninitialized constant CilentCatalogController)
+NameError (uninitialized constant CilentCatalogController)
+  
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:14:51 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 1 pending migration:
+
+db/migrate/20240801171447_create_client_catalogs.rb
+
+
+):
+  
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:756:in `check_pending_migrations'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:663:in `block (2 levels) in call'
+activesupport (7.2.0.beta3) lib/active_support/file_update_checker.rb:85:in `execute'
+activesupport (7.2.0.beta3) lib/active_support/file_update_checker.rb:95:in `execute_if_updated'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:670:in `block in call'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:660:in `synchronize'
+activerecord (7.2.0.beta3) lib/active_record/migration.rb:660:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.0.beta3) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.0.beta3) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.1) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.7) lib/rack/method_override.rb:28:in `call'
+rack (3.1.7) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.0.beta3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.7) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.0.beta3) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in `call'
+railties (7.2.0.beta3) lib/rails/engine.rb:535:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateClientCatalogs (20240801171447)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "client_catalogs" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240801171447') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:15:07 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant CilentCatalogController):
+
+Causes:
+ActionDispatch::MissingController (uninitialized constant CilentCatalogController)
+NameError (uninitialized constant CilentCatalogController)
+  
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:17:27 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant CilentCatalogsController):
+
+Causes:
+ActionDispatch::MissingController (uninitialized constant CilentCatalogsController)
+NameError (uninitialized constant CilentCatalogsController)
+  
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateClientCatalogs (20240801171940)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "client_catalogs" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateClientCatalogs (20240801171940)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "client_catalogs" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240801171940') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(745793581222496940)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:20:22 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant CilentCatalogsController):
+
+Causes:
+ActionDispatch::MissingController (uninitialized constant CilentCatalogsController)
+NameError (uninitialized constant CilentCatalogsController)
+  
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:23:29 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant CilentProductsController):
+
+Causes:
+ActionDispatch::MissingController (uninitialized constant CilentProductsController)
+NameError (uninitialized constant CilentProductsController)
+  
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:23:43 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant CilentProductsController):
+
+Causes:
+ActionDispatch::MissingController (uninitialized constant CilentProductsController)
+NameError (uninitialized constant CilentProductsController)
+  
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:25:17 +0300
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:2: syntax error, unexpected '(', expecting `do' for lambda or tLAMBEG
+... before_action -> compare_user(client_product[:client_id])
+...                              ^
+/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:5: syntax error, unexpected tLAMBEG, expecting `end' or dummy end
+        render json: {tst: "YAY"}
+                     ^
+):
+  
+app/controllers/client_catalogs_controller.rb:2: syntax error, unexpected '(', expecting `do' for lambda or tLAMBEG
+app/controllers/client_catalogs_controller.rb:5: syntax error, unexpected tLAMBEG, expecting `end' or dummy end
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:25:34 +0300
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:2: syntax error, unexpected ':', expecting `do' for lambda or tLAMBEG
+    before_action -> :compare_user(client_product[:...
+                     ^
+/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:5: syntax error, unexpected tLAMBEG, expecting `end' or dummy end
+        render json: {tst: "YAY"}
+                     ^
+):
+  
+app/controllers/client_catalogs_controller.rb:2: syntax error, unexpected ':', expecting `do' for lambda or tLAMBEG
+app/controllers/client_catalogs_controller.rb:5: syntax error, unexpected tLAMBEG, expecting `end' or dummy end
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:26:02 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (0.7ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 18.0ms (1 query, 0 cached) | GC: 2.1ms)
+
+
+  
+NameError (undefined local variable or method `client_product' for an instance of ClientCatalogsController):
+  
+app/controllers/client_catalogs_controller.rb:2:in `block in <class:ClientCatalogsController>'
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:26:48 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 6.5ms (2 queries, 1 cached) | GC: 0.3ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:27:13 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:27:14 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.4ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:27:21 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms (2 queries, 1 cached) | GC: 0.5ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:27:23 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:27:37 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b"}
+  [1m[36mAuth Load (0.1ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 11ms (Views: 0.1ms | ActiveRecord: 5.5ms (2 queries, 1 cached) | GC: 0.5ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:27:38 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:29:39 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Filter chain halted as #<Proc:0x00000001286f0dc8 /Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:2 (lambda)> rendered or redirected
+Completed 401 Unauthorized in 14ms (Views: 0.1ms | ActiveRecord: 7.5ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:29:40 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Filter chain halted as #<Proc:0x00000001286f0dc8 /Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:2 (lambda)> rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:29:53 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Filter chain halted as #<Proc:0x0000000128314948 /Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:2 (lambda)> rendered or redirected
+Completed 401 Unauthorized in 9ms (Views: 0.1ms | ActiveRecord: 3.2ms (2 queries, 1 cached) | GC: 0.7ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:30:01 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:30:11 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 25ms (Views: 0.1ms | ActiveRecord: 16.1ms (2 queries, 1 cached) | GC: 0.1ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:30:14 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"512eec1d-58b4-4ebb-9742-4d73e050014b"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Filter chain halted as #<Proc:0x00000001281f0968 /Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:2 (lambda)> rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 0.1ms | ActiveRecord: 0.2ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:48:14 +0300
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:9: syntax error, unexpected '}', expecting =>
+...|prod| { format_product(prod) }
+...                              ^
+/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:28: syntax error, unexpected local variable or method, expecting '}'
+            reference_id: client_product[:conn_id]
+            ^~~~~~~~~~~~
+):
+  
+app/controllers/client_catalogs_controller.rb:9: syntax error, unexpected '}', expecting =>
+app/controllers/client_catalogs_controller.rb:28: syntax error, unexpected local variable or method, expecting '}'
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:48:54 +0300
+  
+SyntaxError (/Users/yanamishkova-kareva/GitHub/wogi_app/app/controllers/client_catalogs_controller.rb:28: syntax error, unexpected local variable or method, expecting '}'
+            reference_id: client_product[:conn_id]
+            ^~~~~~~~~~~~
+):
+  
+app/controllers/client_catalogs_controller.rb:28: syntax error, unexpected local variable or method, expecting '}'
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:49:03 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (1.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mClientProduct Load (0.3ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/client_catalogs_controller.rb:9:in `map'
+Completed 404 Not Found in 57ms (ActiveRecord: 19.2ms (3 queries, 1 cached) | GC: 1.4ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Brand without an ID):
+  
+app/controllers/client_catalogs_controller.rb:21:in `format_product'
+app/controllers/client_catalogs_controller.rb:9:in `block in get_all'
+app/controllers/client_catalogs_controller.rb:9:in `map'
+app/controllers/client_catalogs_controller.rb:9:in `get_all'
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:49:37 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mClientProduct Load (0.2ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/client_catalogs_controller.rb:8:in `get_all'
+Completed 200 OK in 35ms (Views: 3.1ms | ActiveRecord: 15.6ms (3 queries, 1 cached) | GC: 4.4ms)
+
+
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:50:42 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mClientProduct Load (0.2ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/client_catalogs_controller.rb:9:in `map'
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 10.7ms (3 queries, 1 cached) | GC: 7.2ms)
+
+
+  
+NameError (uninitialized constant ClientCatalogsController::BradOwnership):
+  
+app/controllers/client_catalogs_controller.rb:21:in `format_product'
+app/controllers/client_catalogs_controller.rb:9:in `block in get_all'
+app/controllers/client_catalogs_controller.rb:9:in `map'
+app/controllers/client_catalogs_controller.rb:9:in `get_all'
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:50:48 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mClientProduct Load (0.3ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/client_catalogs_controller.rb:9:in `map'
+  [1m[36mBrandOwnership Load (1.2ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "e69a9885-e6b2-42f2-91ba-df1c92f1e892"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:21:in `format_product'
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 15.5ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+  
+NameError (undefined local variable or method `brand_ownership' for an instance of ClientCatalogsController):
+  
+app/controllers/client_catalogs_controller.rb:22:in `format_product'
+app/controllers/client_catalogs_controller.rb:9:in `block in get_all'
+app/controllers/client_catalogs_controller.rb:9:in `map'
+app/controllers/client_catalogs_controller.rb:9:in `get_all'
+Started GET "/client/products/all" for ::1 at 2024-08-01 20:50:57 +0300
+Processing by ClientCatalogsController#get_all as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mClientProduct Load (0.3ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/client_catalogs_controller.rb:9:in `map'
+  [1m[36mBrandOwnership Load (0.2ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "e69a9885-e6b2-42f2-91ba-df1c92f1e892"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:21:in `format_product'
+  [1m[36mBrand Load (0.6ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:22:in `format_product'
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:23:in `format_product'
+  [1m[36mBrandOwnership Load (0.2ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "ea946288-2d8e-4b9e-841e-f8d6ecef00c0"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:21:in `format_product'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:22:in `format_product'
+  [1m[36mCACHE Product Load (0.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:23:in `format_product'
+Completed 200 OK in 53ms (Views: 0.4ms | ActiveRecord: 26.4ms (9 queries, 2 cached) | GC: 4.4ms)
+
+
+  [1m[36mClientProduct Load (1.7ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1 /* loading for pp */ LIMIT $2[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 11]]
+  [1m[36mClientProduct Load (1.3ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1 /* loading for pp */ LIMIT $2[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"], ["LIMIT", 11]]
+Started GET "/client/products/product_id" for ::1 at 2024-08-01 20:59:40 +0300
+Processing by ClientCatalogsController#get_by_product_id as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408", "product_id"=>"8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"}
+  [1m[36mAuth Load (0.6ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mClientProduct Load (0.5ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/client_catalogs_controller.rb:18:in `map'
+  [1m[36mBrandOwnership Load (0.3ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "e69a9885-e6b2-42f2-91ba-df1c92f1e892"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:32:in `format_product'
+  [1m[36mBrand Load (0.4ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:33:in `format_product'
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:34:in `format_product'
+  [1m[36mBrandOwnership Load (0.1ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "ea946288-2d8e-4b9e-841e-f8d6ecef00c0"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:32:in `format_product'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:33:in `format_product'
+  [1m[36mCACHE Product Load (0.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:34:in `format_product'
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 13.0ms (9 queries, 2 cached) | GC: 1.0ms)
+
+
+  
+NoMethodError (undefined method `where' for an instance of Array):
+  
+app/controllers/client_catalogs_controller.rb:19:in `get_by_product_id'
+Started GET "/client/products/product_id" for ::1 at 2024-08-01 21:00:01 +0300
+Processing by ClientCatalogsController#get_by_product_id as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408", "product_id"=>"8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mClientProduct Load (0.2ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/client_catalogs_controller.rb:18:in `map'
+  [1m[36mBrandOwnership Load (0.1ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "e69a9885-e6b2-42f2-91ba-df1c92f1e892"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:32:in `format_product'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:33:in `format_product'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:34:in `format_product'
+  [1m[36mBrandOwnership Load (0.2ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "ea946288-2d8e-4b9e-841e-f8d6ecef00c0"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:32:in `format_product'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:33:in `format_product'
+  [1m[36mCACHE Product Load (0.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:34:in `format_product'
+Completed 500 Internal Server Error in 60ms (ActiveRecord: 36.2ms (9 queries, 2 cached) | GC: 3.3ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/client_catalogs_controller.rb:19:in `filter'
+app/controllers/client_catalogs_controller.rb:19:in `get_by_product_id'
+  [1m[36mClientProduct Load (0.8ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  [1m[36mBrandOwnership Load (1.0ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "e69a9885-e6b2-42f2-91ba-df1c92f1e892"], ["LIMIT", 1]]
+  [1m[36mBrand Load (1.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  [1m[36mBrandOwnership Load (0.2ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "ea946288-2d8e-4b9e-841e-f8d6ecef00c0"], ["LIMIT", 1]]
+  [1m[36mBrand Load (0.3ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+Started GET "/client/products/product_id" for ::1 at 2024-08-01 21:03:20 +0300
+Processing by ClientCatalogsController#get_by_product_id as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408", "product_id"=>"8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mClientProduct Load (0.2ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/client_catalogs_controller.rb:18:in `map'
+  [1m[36mBrandOwnership Load (0.1ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "e69a9885-e6b2-42f2-91ba-df1c92f1e892"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:32:in `format_product'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:33:in `format_product'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:34:in `format_product'
+  [1m[36mBrandOwnership Load (0.1ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "ea946288-2d8e-4b9e-841e-f8d6ecef00c0"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:32:in `format_product'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:33:in `format_product'
+  [1m[36mCACHE Product Load (0.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:34:in `format_product'
+Completed 200 OK in 41ms (Views: 0.7ms | ActiveRecord: 21.2ms (9 queries, 2 cached) | GC: 1.1ms)
+
+
+Started GET "/client/products/product_id" for ::1 at 2024-08-01 21:04:26 +0300
+Processing by ClientCatalogsController#get_by_product_id as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408", "brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe"}
+  [1m[36mAuth Load (0.5ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+Completed 200 OK in 12ms (Views: 0.1ms | ActiveRecord: 5.4ms (2 queries, 1 cached) | GC: 1.2ms)
+
+
+Started GET "/client/products/brand_id" for ::1 at 2024-08-01 21:04:33 +0300
+Processing by ClientCatalogsController#get_by_brand_id as */*
+  Parameters: {"client_id"=>"900f4d84-c6db-4294-9219-4481ebe3e408", "brand_id"=>"6fe75651-dbae-43b1-9c31-21767d65e3fe"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mClientProduct Load (0.2ms)[0m  [1m[34mSELECT "client_products".* FROM "client_products" WHERE "client_products"."client_id" = $1[0m  [["client_id", "900f4d84-c6db-4294-9219-4481ebe3e408"]]
+  ↳ app/controllers/client_catalogs_controller.rb:30:in `map'
+  [1m[36mBrandOwnership Load (0.1ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "e69a9885-e6b2-42f2-91ba-df1c92f1e892"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:44:in `format_product'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "6fe75651-dbae-43b1-9c31-21767d65e3fe"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:45:in `format_product'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:46:in `format_product'
+  [1m[36mBrandOwnership Load (0.1ms)[0m  [1m[34mSELECT "brand_ownerships".* FROM "brand_ownerships" WHERE "brand_ownerships"."conn_id" = $1 LIMIT $2[0m  [["conn_id", "ea946288-2d8e-4b9e-841e-f8d6ecef00c0"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:44:in `format_product'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "17dd9d0d-6d77-4a32-be86-da2080d8e5cd"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:45:in `format_product'
+  [1m[36mCACHE Product Load (0.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "8a2f6c56-ea3b-4197-a23e-ea3a93ebb846"], ["LIMIT", 1]]
+  ↳ app/controllers/client_catalogs_controller.rb:46:in `format_product'
+Completed 200 OK in 41ms (Views: 0.5ms | ActiveRecord: 11.4ms (9 queries, 2 cached) | GC: 1.4ms)
+
+

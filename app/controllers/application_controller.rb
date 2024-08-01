@@ -37,6 +37,10 @@ class ApplicationController < ActionController::API
     logged_in_user[:role] == "admin"
   end
 
+  def compare_user(id)
+    render json: { message: "Unauthorized" }, status: :unauthorized unless logged_in_user[:userid] == id
+  end
+
   def authorized
     render json: { message: "Please log in" }, status: :unauthorized unless logged_in?
   end

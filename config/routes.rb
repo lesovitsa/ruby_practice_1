@@ -32,12 +32,15 @@ Rails.application.routes.draw do
   patch "/products/update", to: "products#update_product"
 
   # brand_ownerships
-  post "/brands/add_product", to: "brand_ownerships#add_product_to_brand"
-  delete "/brands/remove_product", to: "brand_ownerships#remove_product_from_brand"
+  post "/brand/product/add", to: "brand_ownerships#add_product_to_brand"
+  delete "/brand/product/remove", to: "brand_ownerships#remove_product_from_brand"
 
   # client products
   post "/client/product/add", to: "client_products#add_product_to_client"
   delete "/client/product/remove", to: "client_products#remove_product_from_client"
   patch "/client/product/set_payout_rate", to: "client_products#set_payout_rate"
   patch "/client/product/set_state", to: "client_products#set_state"
+  get "/client/products/all", to: "client_catalogs#get_all"
+  get "/client/products/product_id", to: "client_catalogs#get_by_product_id"
+  get "/client/products/brand_id", to: "client_catalogs#get_by_brand_id"
 end
