@@ -12,9 +12,13 @@ class BrandsController < ApplicationController
 
     def update_brand
         @brand = Brand.find(brand_params[:brand_id])
-        @brand.update(brand_params)
-        @brand.reload
-        render json: {brand: @brand}
+        if @brand.valid?
+            @brand.update(brand_params)
+            @brand.reload
+            render json: {brand: @brand}
+        else
+            render json: {error: "Error updating brand"}
+        end
     end
 
     private

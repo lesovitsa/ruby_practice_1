@@ -12,9 +12,13 @@ class ProductsController < ApplicationController
 
     def update_product
         @product = Product.find(product_params[:product_id])
-        @product.update(product_params)
-        @product.reload
-        render json: {product: @product}
+        if @product.valid?
+            @product.update(product_params)
+            @product.reload
+            render json: {product: @product}
+        else
+            render json: {error: "Error updating product"}
+        end
     end
 
     private

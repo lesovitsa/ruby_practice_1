@@ -1835,3 +1835,332 @@ Processing by BrandsController#update_brand as */*
 Completed 200 OK in 26ms (Views: 0.2ms | ActiveRecord: 13.9ms (5 queries, 1 cached) | GC: 0.0ms)
 
 
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:48:30 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"registered"}
+  [1m[36mAuth Load (0.8ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.3ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:16:in `update_brand'
+Completed 200 OK in 40ms (Views: 0.5ms | ActiveRecord: 13.7ms (4 queries, 1 cached) | GC: 0.8ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:49:13 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"registered"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:16:in `update_brand'
+Completed 200 OK in 31ms (Views: 0.3ms | ActiveRecord: 20.5ms (4 queries, 1 cached) | GC: 0.7ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:49:21 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"reg"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:16:in `update_brand'
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 0.6ms (4 queries, 1 cached) | GC: 0.7ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:49:52 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"active"}
+  [1m[36mAuth Load (0.7ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:15:in `update_brand'
+  [1m[36mBrand Update (1.7ms)[0m  [1m[33mUPDATE "brands" SET "state" = $1, "updated_at" = $2 WHERE "brands"."brand_id" = $3[0m  [["state", "active"], ["updated_at", "2024-08-01 12:49:53.022470"], ["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"]]
+  ↳ app/controllers/brands_controller.rb:15:in `update_brand'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brands_controller.rb:15:in `update_brand'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:16:in `update_brand'
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 3.9ms (5 queries, 1 cached) | GC: 0.4ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:50:58 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"rge"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:17:in `update_brand'
+Completed 200 OK in 34ms (Views: 3.8ms | ActiveRecord: 18.3ms (4 queries, 1 cached) | GC: 3.5ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:51:30 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"rge"}
+  [1m[36mAuth Load (0.6ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.8ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:17:in `update_brand'
+Completed 200 OK in 35ms (Views: 0.2ms | ActiveRecord: 17.0ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:52:02 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"rge"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.3ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+Completed 200 OK in 31ms (Views: 0.1ms | ActiveRecord: 7.3ms (3 queries, 1 cached) | GC: 11.9ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:52:08 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"inactive"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.5ms (3 queries, 1 cached) | GC: 1.4ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:52:09 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"inactive"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.5ms (3 queries, 1 cached) | GC: 1.4ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:52:35 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"inactive"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+Completed 200 OK in 21ms (Views: 0.2ms | ActiveRecord: 11.2ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:52:37 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"inactive"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.5ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:52:39 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"inactive"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:52:45 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"active"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.4ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:53:03 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"active"}
+  [1m[36mAuth Load (0.1ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:17:in `update_brand'
+Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 8.5ms (4 queries, 1 cached) | GC: 0.1ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:54:08 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"active"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.3ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:17:in `update_brand'
+Completed 200 OK in 36ms (Views: 0.2ms | ActiveRecord: 14.8ms (4 queries, 1 cached) | GC: 8.6ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:54:12 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"inactive"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/brands_controller.rb:16:in `update_brand'
+  [1m[36mBrand Update (2.0ms)[0m  [1m[33mUPDATE "brands" SET "state" = $1, "updated_at" = $2 WHERE "brands"."brand_id" = $3[0m  [["state", "inactive"], ["updated_at", "2024-08-01 12:54:12.838709"], ["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"]]
+  ↳ app/controllers/brands_controller.rb:16:in `update_brand'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/brands_controller.rb:16:in `update_brand'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:17:in `update_brand'
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 3.1ms (5 queries, 1 cached) | GC: 0.6ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:54:16 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"reg"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:17:in `update_brand'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 0.5ms (4 queries, 1 cached) | GC: 0.6ms)
+
+
+Started PATCH "/brands/update" for ::1 at 2024-08-01 15:54:17 +0300
+Processing by BrandsController#update_brand as */*
+  Parameters: {"brand_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"reg"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:14:in `update_brand'
+  [1m[36mBrand Load (0.1ms)[0m  [1m[34mSELECT "brands".* FROM "brands" WHERE "brands"."brand_id" = $1 LIMIT $2[0m  [["brand_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/brands_controller.rb:17:in `update_brand'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 0.4ms (4 queries, 1 cached) | GC: 0.9ms)
+
+
+Started PATCH "/products/update" for ::1 at 2024-08-01 15:56:01 +0300
+Processing by ProductsController#update_product as */*
+  Parameters: {"product_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"reg"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:14:in `update_product'
+Completed 200 OK in 37ms (Views: 0.1ms | ActiveRecord: 15.5ms (3 queries, 1 cached) | GC: 8.6ms)
+
+
+Started PATCH "/products/update" for ::1 at 2024-08-01 15:56:08 +0300
+Processing by ProductsController#update_product as */*
+  Parameters: {"product_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"inactive"}
+  [1m[36mAuth Load (0.2ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:14:in `update_product'
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.5ms (3 queries, 1 cached) | GC: 1.1ms)
+
+
+Started PATCH "/products/update" for ::1 at 2024-08-01 15:56:40 +0300
+Processing by ProductsController#update_product as */*
+  Parameters: {"product_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"inactive"}
+  [1m[36mAuth Load (0.4ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:14:in `update_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:16:in `update_product'
+  [1m[36mProduct Update (1.1ms)[0m  [1m[33mUPDATE "products" SET "state" = $1, "updated_at" = $2 WHERE "products"."product_id" = $3[0m  [["state", "inactive"], ["updated_at", "2024-08-01 12:56:40.750935"], ["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"]]
+  ↳ app/controllers/products_controller.rb:16:in `update_product'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:16:in `update_product'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:17:in `update_product'
+Completed 200 OK in 25ms (Views: 0.2ms | ActiveRecord: 14.9ms (5 queries, 1 cached) | GC: 0.4ms)
+
+
+Started PATCH "/products/update" for ::1 at 2024-08-01 15:56:55 +0300
+Processing by ProductsController#update_product as */*
+  Parameters: {"product_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"inactive"}
+  [1m[36mAuth Load (0.8ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:14:in `update_product'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:17:in `update_product'
+Completed 200 OK in 32ms (Views: 0.3ms | ActiveRecord: 19.5ms (4 queries, 1 cached) | GC: 0.7ms)
+
+
+Started PATCH "/products/update" for ::1 at 2024-08-01 15:57:00 +0300
+Processing by ProductsController#update_product as */*
+  Parameters: {"product_id"=>"55a5978a-edb8-44b5-8081-60e1cf544fb3", "state"=>"active"}
+  [1m[36mAuth Load (0.3ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mCACHE Auth Load (0.0ms)[0m  [1m[34mSELECT "auths".* FROM "auths" WHERE "auths"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `logged_in_user'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:14:in `update_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/products_controller.rb:16:in `update_product'
+  [1m[36mProduct Update (1.3ms)[0m  [1m[33mUPDATE "products" SET "state" = $1, "updated_at" = $2 WHERE "products"."product_id" = $3[0m  [["state", "active"], ["updated_at", "2024-08-01 12:57:00.616781"], ["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"]]
+  ↳ app/controllers/products_controller.rb:16:in `update_product'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/products_controller.rb:16:in `update_product'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."product_id" = $1 LIMIT $2[0m  [["product_id", "55a5978a-edb8-44b5-8081-60e1cf544fb3"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:17:in `update_product'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 2.6ms (5 queries, 1 cached) | GC: 0.0ms)
+
+
