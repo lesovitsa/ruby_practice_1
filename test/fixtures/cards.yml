@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  card_id: 
+  card_number: MyString
+  client_id: 
+  activation_number: MyString
+  pin: MyString
+  prod_id: 
+
+two:
+  card_id: 
+  card_number: MyString
+  client_id: 
+  activation_number: MyString
+  pin: MyString
+  prod_id: 

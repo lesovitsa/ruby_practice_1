@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_01_171940) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_01_185348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,7 +43,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_01_171940) do
     t.index ["name"], name: "index_brands_on_name", unique: true
   end
 
-  create_table "client_catalogs", force: :cascade do |t|
+  create_table "cards", primary_key: "card_id", id: :uuid, default: nil, force: :cascade do |t|
+    t.string "card_number", null: false
+    t.uuid "client_id", null: false
+    t.string "activation_number", null: false
+    t.string "pin"
+    t.uuid "prod_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activation_number"], name: "index_cards_on_activation_number", unique: true
+    t.index ["card_id"], name: "index_cards_on_card_id", unique: true
+    t.index ["card_number"], name: "index_cards_on_card_number", unique: true
+  end
+
+  create_table "clears", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,6 +83,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_01_171940) do
 
   add_foreign_key "brand_ownerships", "brands", primary_key: "brand_id"
   add_foreign_key "brand_ownerships", "products", primary_key: "product_id"
+  add_foreign_key "cards", "auths", column: "client_id", primary_key: "userid"
+  add_foreign_key "cards", "brand_ownerships", column: "prod_id", primary_key: "conn_id"
   add_foreign_key "client_products", "auths", column: "client_id", primary_key: "userid"
   add_foreign_key "client_products", "brand_ownerships", column: "prod_id", primary_key: "conn_id"
 end

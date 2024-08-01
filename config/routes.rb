@@ -40,7 +40,15 @@ Rails.application.routes.draw do
   delete "/client/product/remove", to: "client_products#remove_product_from_client"
   patch "/client/product/set_payout_rate", to: "client_products#set_payout_rate"
   patch "/client/product/set_state", to: "client_products#set_state"
+
+  # client catalog
   get "/client/products/all", to: "client_catalogs#get_all"
   get "/client/products/product_id", to: "client_catalogs#get_by_product_id"
   get "/client/products/brand_id", to: "client_catalogs#get_by_brand_id"
+
+  # card
+  post "/client/card/request", to: "cards#request_card"
+  delete "/client/card/cancel", to: "cards#cancel"
+  get "/client/cards/all", to: "cards#get_all_cards"
+  post "/client/card/use", to: "cards#use"
 end

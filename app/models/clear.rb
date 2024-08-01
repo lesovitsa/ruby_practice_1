@@ -1,0 +1,2 @@
+class Clear < ApplicationRecord
+end
